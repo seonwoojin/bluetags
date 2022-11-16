@@ -11,7 +11,7 @@ const NavBarWrapper = styled.div`
   height: 6rem;
   padding: 0 3rem;
   background-color: inherit;
-  border-bottom: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
   background-color: white;
   z-index: 99;
@@ -38,6 +38,7 @@ const SearchInput = styled.input`
   border: none;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   :focus {
     border: 0.5px solid black;
   }

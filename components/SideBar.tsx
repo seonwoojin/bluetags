@@ -12,7 +12,7 @@ const SideBarWrapper = styled.div`
   position: fixed;
   z-index: 99;
   top: 6rem;
-  border-right: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 `;
 
 const SideBarTitle = styled.div<{ isSelected: boolean }>`
