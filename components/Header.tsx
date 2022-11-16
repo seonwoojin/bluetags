@@ -13,6 +13,7 @@ const NavBarWrapper = styled.div`
   background-color: inherit;
   border-bottom: 2px solid black;
   position: fixed;
+  background-color: white;
   z-index: 99;
 `;
 

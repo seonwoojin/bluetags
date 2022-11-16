@@ -20,11 +20,16 @@ const Title = styled.div`
   font-size: 6rem;
 `;
 
-export default function HomeTitle() {
+interface TitleProps {
+  subTitle: string;
+  title: string;
+}
+
+export default function HomeTitle({ subTitle, title }: TitleProps) {
   return (
     <TitleContainer>
-      <SubTitle>Subtitle</SubTitle>
-      <Title>Title</Title>
+      <SubTitle>{subTitle}</SubTitle>
+      <Title>{title}</Title>
     </TitleContainer>
   );
 }
