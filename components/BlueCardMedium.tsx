@@ -141,7 +141,7 @@ interface SliderProps {
   num: number;
 }
 
-export default function BlueCardLarge({ num }: SliderProps) {
+export default function BlueCardMedium({ num }: SliderProps) {
   return (
     <BlueCardContainer>
       <BlueCardBackGround>

@@ -1,9 +1,10 @@
 import HomeTitle from "@components/HomeTitle";
-import BlueCardLargeSlider from "@components/slider/BlueCardLargeSlider";
+import BlueCardMediumSlider from "@components/slider/BlueCardMediumSlider";
 import { NextPage } from "next";
 import styled from "styled-components";
 import BlueCardHorizontalSlider from "@components/slider/BlueCardHorizontalSlider";
 import BlueCardSmall from "@components/BlueCardSmall";
+import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 
 const Container = styled.div`
   display: flex;
@@ -37,7 +38,7 @@ const Home: NextPage = () => {
       <ContextWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
-          <BlueCardLargeSlider />
+          <BlueCardMediumSlider />
         </SlideWrapper>
       </ContextWrapper>
       <ContextWrapper>
@@ -49,6 +50,10 @@ const Home: NextPage = () => {
       <ContextWrapper>
         <HomeTitle subTitle="Small" title="BlueCard" />
         <BlueCardSmall num={1} />
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Small" title="BlueCard" />
+        <ProjectCircleSlider />
       </ContextWrapper>
     </Container>
   );

@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import styled from "styled-components";
-import BlueCardLarge from "../BlueCardLarge";
+import BlueCardMedium from "../BlueCardMedium";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -34,7 +34,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function BlueCardLargeSlider() {
+export default function BlueCardMediumSlider() {
   const settings = {
     dots: true,
     infinite: true,
@@ -100,7 +100,7 @@ export default function BlueCardLargeSlider() {
     <div>
       <StyledSlider {...settings}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-          <BlueCardLarge key={card} num={card} />
+          <BlueCardMedium key={card} num={card} />
         ))}
       </StyledSlider>
     </div>

@@ -26,7 +26,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
-  margin: 0; 
+}
+input:focus, select:focus, option:focus, textarea:focus, button:focus{
+	outline: none;
 }
 div {
   -ms-user-select: none; 
@@ -34,5 +36,14 @@ div {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+select {
+
+-webkit-appearance:none; /* for chrome */
+
+-moz-appearance:none; /*for firefox*/
+
+appearance:none;
+
 }
 `;
