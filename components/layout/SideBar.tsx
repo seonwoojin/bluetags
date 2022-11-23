@@ -30,22 +30,31 @@ const SideBarTitle = styled.div<{ isSelected: boolean }>`
 `;
 
 export default function SideBar() {
+  const router = useRouter();
   return (
     <SideBarWrapper>
       <Link href="/">
-        <SideBarTitle isSelected={true}>Home</SideBarTitle>
+        <SideBarTitle isSelected={router.pathname === "/"}>Home</SideBarTitle>
       </Link>
       <Link href="/news">
-        <SideBarTitle isSelected={false}>News</SideBarTitle>
+        <SideBarTitle isSelected={router.pathname === "/news"}>
+          News
+        </SideBarTitle>
       </Link>
       <Link href="/watchlist">
-        <SideBarTitle isSelected={false}>Watchlist</SideBarTitle>
+        <SideBarTitle isSelected={router.pathname === "/watchlist"}>
+          Watchlist
+        </SideBarTitle>
       </Link>
       <Link href="/calendar">
-        <SideBarTitle isSelected={false}>Calendar</SideBarTitle>
+        <SideBarTitle isSelected={router.pathname === "/calendar"}>
+          Calendar
+        </SideBarTitle>
       </Link>
       <Link href="/subscribe">
-        <SideBarTitle isSelected={false}>Subscribe</SideBarTitle>
+        <SideBarTitle isSelected={router.pathname === "/subscribe"}>
+          Subscribe
+        </SideBarTitle>
       </Link>
     </SideBarWrapper>
   );

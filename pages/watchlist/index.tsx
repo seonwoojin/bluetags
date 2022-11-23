@@ -1,4 +1,3 @@
-import ProjectCircle from "@components/ProjectCircle";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 import { NextPage } from "next";
 import styled from "styled-components";

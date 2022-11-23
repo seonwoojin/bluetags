@@ -3,7 +3,7 @@ import { withIronSessionApiRoute, withIronSessionSsr } from "iron-session/next";
 declare module "iron-session" {
   interface IronSessionData {
     user?: {
-      id: number;
+      id: string;
     };
   }
 }
@@ -11,6 +11,7 @@ declare module "iron-session" {
 const cookieOptions = {
   cookieName: "bluetags",
   password: process.env.COOKIE_PASSWORD!,
+  ttl: 60 * 60 * 6,
 };
 
 /**req.body 안에 있는 token 을 가져와서 디코딩 해줌 */

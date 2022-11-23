@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import styled from "styled-components";
-import BlueCardMedium from "../BlueCardMedium";
+import BlueCardMedium from "../bluecard/BlueCardMedium";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {

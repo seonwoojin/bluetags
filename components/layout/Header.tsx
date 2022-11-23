@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import useUser from "@libs/client/useUser";
+import useMutation from "./../../libs/client/useMutation";
+import { useSWRConfig } from "swr";
+import { useEffect } from "react";
 
 /** NavBar 전체 div */
 const NavBarWrapper = styled.div`
@@ -78,6 +83,15 @@ const UserText = styled.div`
 `;
 
 export default function Header() {
+  const router = useRouter();
+  const user = useUser();
+  const { mutate } = useSWRConfig();
+  const [signOut, { status }] = useMutation("api/users/signout");
+  useEffect(() => {
+    if (status === 200) {
+      mutate("/api/users");
+    }
+  }, [status, router]);
   return (
     <NavBarWrapper>
       <Link href={"/"}>
@@ -95,9 +109,19 @@ export default function Header() {
         <Link href={"/docs"}>
           <UserText>Docs</UserText>
         </Link>
-        <Link href={"/login"}>
-          <UserText>Sign In</UserText>
-        </Link>
+        {user.user ? (
+          <UserText
+            onClick={() => {
+              signOut({});
+            }}
+          >
+            Sign Out
+          </UserText>
+        ) : (
+          <Link href={"/signin"}>
+            <UserText>Sign In</UserText>
+          </Link>
+        )}
       </UserContainer>
     </NavBarWrapper>
   );

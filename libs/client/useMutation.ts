@@ -1,33 +1,39 @@
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 
-interface UseMutationState<T> {
+interface UseMutationState<T, U> {
   loading: boolean;
   data?: T;
-  error?: object;
+  error?: U;
+  status?: number;
 }
-type useMutationResult<T> = [(data: any) => void, UseMutationState<T>];
 
-export default function useMutation<T = any>(
+type useMutationResult<T, U> = [(data: any) => void, UseMutationState<T, U>];
+
+export default function useMutation<T = any, U = any>(
   url: string
-): useMutationResult<T> {
-  const [state, setSate] = useState<UseMutationState<T>>({
+): useMutationResult<T, U> {
+  const [state, setSate] = useState<UseMutationState<T, U>>({
     loading: false,
     data: undefined,
     error: undefined,
+    status: undefined,
   });
-  function mutation(data: any) {
-    setSate((prev) => ({ ...prev, loading: true }));
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json().catch(() => {}))
-      .then((data) => setSate((prev) => ({ ...prev, data })))
-      .catch((error) => setSate((prev) => ({ ...prev, error })))
-      .finally(() => setSate((prev) => ({ ...prev, loading: false })));
+  async function mutation(body: any) {
+    try {
+      const response = await axios.post<T>(url, body);
+      const data = response.data;
+      const status = response.status;
+      setSate((prev) => ({ ...prev, data }));
+      setSate((prev) => ({ ...prev, status }));
+    } catch (e: any) {
+      const error = e.response.data.error;
+      const status = e.response.status;
+      setSate((prev) => ({ ...prev, error }));
+      setSate((prev) => ({ ...prev, status }));
+    } finally {
+      setSate((prev) => ({ ...prev, loading: false }));
+    }
   }
   return [mutation, { ...state }];
 }

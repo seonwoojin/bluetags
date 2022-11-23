@@ -3,8 +3,9 @@ import BlueCardMediumSlider from "@components/slider/BlueCardMediumSlider";
 import { NextPage } from "next";
 import styled from "styled-components";
 import BlueCardHorizontalSlider from "@components/slider/BlueCardHorizontalSlider";
-import BlueCardSmall from "@components/BlueCardSmall";
+import BlueCardSmall from "@components/bluecard/BlueCardSmall";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
+import useUser from "./../libs/client/useUser";
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ const SlideWrapper = styled.div`
 `;
 
 const Home: NextPage = () => {
+  const user = useUser();
   return (
     <Container>
       <ContextWrapper>

@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import styled from "styled-components";
 import ProjectCircle from "@components/ProjectCircle";
-import BlueCardMedium from "./../BlueCardMedium";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {

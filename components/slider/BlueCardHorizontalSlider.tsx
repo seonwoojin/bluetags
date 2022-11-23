@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import styled from "styled-components";
-import BlueCardHorizontal from "@components/BlueCardHorizontal";
+import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {

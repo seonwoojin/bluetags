@@ -4,13 +4,13 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "styles/global-styles";
 import { theme } from "styles/theme";
 import { SWRConfig } from "swr";
+import axios from "axios";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SWRConfig
       value={{
-        fetcher: (url: string) =>
-          fetch(url).then((response) => response.json()),
+        fetcher: (url: string) => axios.get(url),
       }}
     >
       <ThemeProvider theme={theme}>
