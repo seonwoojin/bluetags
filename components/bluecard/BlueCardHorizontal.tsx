@@ -7,12 +7,12 @@ const BlueCardContainer = styled.div`
   align-items: center;
   width: 1066px;
   height: 200px;
+  margin-bottom: 50px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   cursor: pointer;
-  margin-bottom: 30px;
 `;
 
 const BlueCardBackGround = styled.div`
@@ -113,14 +113,14 @@ const PostDate = styled.div`
 
 const Button = styled.button`
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   right: 50px;
   border: none;
   border-radius: 10px;
   background-color: #272a2e;
   svg {
-    width: 40px;
+    width: 30px;
     fill: white;
   }
 `;

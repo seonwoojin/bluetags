@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import styled from "styled-components";
-import ProjectCircle from "@components/ProjectCircle";
+import ProjectCircle from "@components/project/ProjectCircle";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -14,7 +14,7 @@ const Div = styled.div``;
 
 export default function ProjectCircleSlider() {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 900,
     autoplay: false,

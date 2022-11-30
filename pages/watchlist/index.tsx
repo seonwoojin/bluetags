@@ -1,3 +1,5 @@
+import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
+import HomeTitle from "@components/HomeTitle";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 import { NextPage } from "next";
 import styled from "styled-components";
@@ -18,9 +20,10 @@ const TopWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 60%;
   height: 20rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-bottom: 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const FilterContainer = styled.div`
@@ -76,6 +79,16 @@ const SNSFilter = styled.select`
   font-size: 1.3rem;
 `;
 
+const ContextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 100px;
+`;
+
 const WatchList: NextPage = () => {
   return (
     <Container>
@@ -83,7 +96,7 @@ const WatchList: NextPage = () => {
         <FilterContainer>
           <FilterWrapper>
             <BlueTagsFilter>
-              <option value={""} disabled hidden>
+              <option value={""} hidden>
                 BlueTags
               </option>
               <option value={""}>All</option>
@@ -93,12 +106,12 @@ const WatchList: NextPage = () => {
           </FilterWrapper>
           <FilterWrapper style={{ justifyContent: "flex-end" }}>
             <DateFilter>
-              <option value={""} disabled hidden>
+              <option value={""} hidden>
                 Date
               </option>
             </DateFilter>
             <SNSFilter>
-              <option value={""} disabled hidden>
+              <option value={""} hidden>
                 SNS
               </option>
             </SNSFilter>
@@ -108,6 +121,12 @@ const WatchList: NextPage = () => {
           <ProjectCircleSlider />
         </ProjectContainer>
       </TopWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Subtitle" title="Title" />
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+          <BlueCardHorizontal num={num} />
+        ))}
+      </ContextWrapper>
     </Container>
   );
 };

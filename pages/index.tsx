@@ -53,10 +53,6 @@ const Home: NextPage = () => {
         <HomeTitle subTitle="Small" title="BlueCard" />
         <BlueCardSmall num={1} />
       </ContextWrapper>
-      <ContextWrapper>
-        <HomeTitle subTitle="Small" title="BlueCard" />
-        <ProjectCircleSlider />
-      </ContextWrapper>
     </Container>
   );
 };

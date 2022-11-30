@@ -11,13 +11,13 @@ const TitleContainer = styled.div`
 const SubTitle = styled.div`
   width: 100%;
   height: 4rem;
-  font-size: 3rem;
+  font-size: 2rem;
 `;
 
 const Title = styled.div`
   width: 100%;
   height: 8rem;
-  font-size: 6rem;
+  font-size: 4rem;
 `;
 
 interface TitleProps {

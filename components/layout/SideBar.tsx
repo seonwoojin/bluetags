@@ -23,7 +23,7 @@ const SideBarTitle = styled.div<{ isSelected: boolean }>`
   width: 100%;
   height: 4rem;
   background-color: ${(props) => (props.isSelected ? "rgba(0,0,0,0.2)" : null)};
-  font-size: 2.5rem;
+  font-size: 2rem;
   border-radius: 10px;
   color: black;
   cursor: pointer;
