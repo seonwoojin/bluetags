@@ -19,7 +19,7 @@ const NavBarWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   position: fixed;
   background-color: white;
-  z-index: 99;
+  z-index: 50;
 `;
 
 const Logo = styled.img`
