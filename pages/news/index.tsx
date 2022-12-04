@@ -19,8 +19,8 @@ const News: NextPage = () => {
   return (
     <Container>
       <HomeTitle subTitle="Subtitle" title="Title" />
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-        <BlueCardHorizontal num={num} />
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((num, index) => (
+        <BlueCardHorizontal key={index} num={num} />
       ))}
     </Container>
   );
