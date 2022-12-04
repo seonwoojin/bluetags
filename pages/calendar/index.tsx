@@ -499,8 +499,7 @@ const CalendarPage: NextPage = () => {
           );
           setTodayDate(date);
           setToDos(() => [...toDos]);
-          console.log(event.currentTarget);
-          //router.push(`/calendar?date=${date.toDateString()}`);
+          router.push(`/calendar?date=${date.toDateString()}`);
         }}
         onActiveStartDateChange={(props) => setClick(props.activeStartDate)}
         nextLabel={
@@ -729,8 +728,8 @@ const CalendarPage: NextPage = () => {
               </svg>
             </DetailDateTitle>
             <DetailDateToDos>
-              {toDos.map((toDo) => (
-                <DetailDateToDo>
+              {toDos.map((toDo, index) => (
+                <DetailDateToDo key={index}>
                   <h1>{toDo.title}</h1>
                 </DetailDateToDo>
               ))}
