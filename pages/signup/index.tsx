@@ -271,12 +271,12 @@ const WatchList: NextPage = () => {
               <input type={"checkbox"} />
               <div>
                 <p>
-                  Creating an account means you're okay with our&nbsp;
+                  {`Creating an account means you're okay with our `}
                   <span>Terms of Service, Privacy Policy,</span>
-                  &nbsp;
                 </p>
                 <p>
-                  and our default&nbsp;<span>Notification Settings.</span>
+                  {`and our default `}
+                  <span>Notification Settings.</span>
                 </p>
               </div>
             </CheckBoxWrapper>
