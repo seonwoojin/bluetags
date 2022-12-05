@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { Calendar } from "react-calendar";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,7 +14,11 @@ const Container = styled.div`
 `;
 
 const WatchList: NextPage = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <Calendar locale="kr" value={new Date()} />
+    </Container>
+  );
 };
 
 export default WatchList;

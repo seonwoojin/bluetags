@@ -31,7 +31,7 @@ const datas: DataType[] = [
       "debitis id. Everti aliquid te vix, sit no doming oportere theophrastus, eam ne libris delenit atomo",
     startDate: new Date("2022-12-27 00:00:00"),
     endDate: new Date("2023-01-12 23:59:59"),
-    bluetag: "minting",
+    bluetag: "lang",
     id: "2",
   },
   {
@@ -55,7 +55,7 @@ const datas: DataType[] = [
       " nonumes ex mei, duo ut dicta vidisse mnesarchum, nec an saepe verear. Ea eripuit iracundia mel, an dolorum debitis ponderu",
     startDate: new Date("2022-12-23 00:00:00"),
     endDate: new Date("2022-12-23 23:59:59"),
-    bluetag: "voting",
+    bluetag: "lang",
     id: "5",
   },
   {
@@ -87,7 +87,7 @@ const datas: DataType[] = [
       "gainst Catiline is taken for type specimens: Quo usque tandem abutere, Catilina, patientia nostra? Quam diu etia",
     startDate: new Date("2022-12-06 00:00:00"),
     endDate: new Date("2022-12-13 23:59:59"),
-    bluetag: "event",
+    bluetag: "lang",
     id: "9",
   },
   {
@@ -126,7 +126,7 @@ const datas: DataType[] = [
     title:
       "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
     startDate: new Date("2022-12-28 00:00:00"),
-    endDate: new Date("2023-12-31 23:59:59"),
+    endDate: new Date("2024-01-01 23:59:59"),
     bluetag: "event",
     id: "14",
   },
@@ -143,20 +143,52 @@ const datas: DataType[] = [
       "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
     startDate: new Date("2022-12-31 00:00:00"),
     endDate: new Date("2023-01-02 23:59:59"),
-    bluetag: "event",
+    bluetag: "lang",
     id: "16",
+  },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-12-26 00:00:00"),
+    endDate: new Date("2022-12-26 23:59:59"),
+    bluetag: "event",
+    id: "17",
+  },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-11-20 00:00:00"),
+    endDate: new Date("2022-12-04 23:59:59"),
+    bluetag: "event",
+    id: "18",
+  },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2023-01-20 00:00:00"),
+    endDate: new Date("2023-01-24 23:59:59"),
+    bluetag: "event",
+    id: "19",
+  },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-11-20 00:00:00"),
+    endDate: new Date("2022-11-23 23:59:59"),
+    bluetag: "event",
+    id: "20",
   },
 ];
 
 const Container = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   width: 100vw;
   min-width: 1500px;
   height: auto;
-  padding-top: 15rem;
+  padding-top: 10vh;
   padding-left: 20rem;
   .react-calendar__tile--active,
   .react-calendar__tile--active:enabled:hover,
@@ -167,15 +199,29 @@ const Container = styled.div`
     width: 1000px;
     height: auto;
     border: none;
+    margin-bottom: 50px;
   }
   .react-calendar__navigation {
     height: 100px;
     position: relative;
+    svg {
+      width: 2rem;
+      fill: #191f28;
+    }
   }
   .react-calendar__navigation button {
     :disabled {
       background-color: white;
       color: black;
+    }
+    :hover {
+      background-color: white;
+    }
+    :enabled {
+      :hover {
+        background-color: white;
+      }
+      background-color: white;
     }
     :first-child {
       display: none;
@@ -186,37 +232,50 @@ const Container = styled.div`
     :nth-child(2) {
       position: absolute;
       top: 15px;
-      left: 350px;
+      left: 340px;
+      z-index: 40;
     }
     :nth-child(3) {
       position: absolute;
       left: 0;
+      right: 0;
       .react-calendar__navigation__label__labelText {
-        .month {
-          font-size: 4rem;
-          font-weight: 600;
-          margin-right: 20px;
-        }
         font-size: 4rem;
+        font-weight: 600;
+        color: #474c53;
       }
     }
     :nth-child(4) {
       position: absolute;
       top: 15px;
-      left: 400px;
+      left: 620px;
     }
     :not(:nth-child(3)) {
     }
   }
+  .react-calendar__viewContainer {
+    width: 1000px;
+    overflow: hidden;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+      rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  }
   .react-calendar__month-view__weekdays {
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    height: 8rem;
+    border: 2px solid #c6c8ce;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background: #f1f3f8;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #858990;
+    }
   }
   .react-calendar__month-view__weekdays__weekday {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-top: 1px solid black;
-    background: rgba(0, 0, 0, 0.1);
     abbr {
       font-weight: 600;
       font-size: 1.5rem;
@@ -225,16 +284,18 @@ const Container = styled.div`
     }
   }
   .react-calendar__tile {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
     padding: 0px;
     width: 142.84px;
-    height: 100px;
+    height: 120px;
     background: white;
     overflow: visible;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-left: 2px solid #c6c8ce;
+    border-bottom: 2px solid #c6c8ce;
     :hover {
       color: black;
       background: white;
@@ -251,12 +312,18 @@ const Container = styled.div`
       margin-right: 5px;
     }
   }
+
+  .saturday {
+    border-right: 2px solid #c6c8ce;
+  }
+
   .react-calendar__month-view__days__day--weekend {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
-    height: 100px;
+    height: 120px;
+
     background: rgba(0, 0, 0, 0.1);
     color: red;
     :hover {
@@ -335,13 +402,16 @@ const TileWrapper = styled.div`
     border-bottom-right-radius: 5px;
   }
   .event {
-    background-color: #a3d0f9;
+    background-color: #64b5ff;
   }
   .minting {
-    background-color: #c3dec1;
+    background-color: #9dce99;
   }
   .voting {
-    background-color: #f9c4e1;
+    background-color: #ffa0d3;
+  }
+  .lang {
+    background-color: #fcc53a;
   }
   .react-calendar__month-view__days {
     button {
@@ -361,6 +431,8 @@ const TodoStartDiv = styled.div<{ leftDays: number; day: number }>`
   align-items: center;
   text-align: center;
   width: 130px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   min-width: ${(props) =>
     props.leftDays <= props.day
       ? props.leftDays > 1
@@ -374,14 +446,19 @@ const TodoStartDiv = styled.div<{ leftDays: number; day: number }>`
 const BetweenDiv = styled.div`
   width: 140px;
   min-height: 25px;
+  z-index: 99;
 `;
 
 const DotContainer = styled.div`
+  position: absolute;
+  bottom: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 3rem;
+  padding-right: 1.5rem;
+  color: black;
   cursor: pointer;
   svg {
     width: 20px;
@@ -460,15 +537,84 @@ const DetailDateToDo = styled.div`
   }
 `;
 
+const LegendContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 500px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    font-size: 3rem;
+    color: #434447;
+  }
+`;
+
+const UnitContainer = styled.div<{ color: string }>`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 15%;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  border-radius: 15px;
+  color: #434447;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  svg {
+    width: 1.2rem;
+    margin-right: 1.5rem;
+    color: #434447;
+    fill: ${(props) => props.color};
+  }
+  .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+`;
+
+const UnitCount = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  background-color: #f1f2f2;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+`;
+
 const week = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
 
 const CalendarPage: NextPage = () => {
   const router = useRouter();
   const [value, setValue] = useState(new Date());
-  const [click, setClick] = useState<Date>();
+  const [click, setClick] = useState<Date>(new Date());
   const [clickTile, setClickTile] = useState(false);
   const [todayDate, setTodayDate] = useState(new Date());
   const [toDos, setToDos] = useState<DataType[]>([]);
+  const [event, setEvent] = useState(0);
+  const [voting, setVoting] = useState(0);
+  const [minting, setMinting] = useState(0);
+  const [lang, setLang] = useState(0);
   useEffect(() => {
     const tiles = document.getElementsByClassName(
       "react-calendar__tile"
@@ -476,6 +622,43 @@ const CalendarPage: NextPage = () => {
     for (let i = 0; i < tiles.length; i++) {
       tiles[i].style.overflow = "visible";
     }
+    setEvent(0);
+    setVoting(0);
+    setMinting(0);
+    setLang(0);
+    const filteredData = datas
+      .filter(
+        (data) =>
+          data.startDate.getFullYear() === click.getFullYear() ||
+          data.endDate.getFullYear() === click.getFullYear()
+      )
+      .filter((data) => {
+        if (data.startDate.getMonth() === click.getMonth()) {
+          return true;
+        } else if (data.endDate.getMonth() === click.getMonth()) {
+          return true;
+        } else if (data.startDate <= click && data.endDate >= click) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    filteredData.map((data) => {
+      switch (data.bluetag) {
+        case "event":
+          setEvent((prev) => prev + 1);
+          break;
+        case "voting":
+          setVoting((prev) => prev + 1);
+          break;
+        case "minting":
+          setMinting((prev) => prev + 1);
+          break;
+        case "lang":
+          setLang((prev) => prev + 1);
+          break;
+      }
+    });
   }, [click]);
   datas.sort(function (dataA, dataB) {
     if (dataA.startDate.getTime() === dataB.startDate.getTime()) {
@@ -493,56 +676,54 @@ const CalendarPage: NextPage = () => {
   return (
     <Container>
       <Calendar
-        onClickDay={(date, event) => {
-          const toDos = datas.filter(
-            (data) => data.startDate <= date && data.endDate >= date
-          );
-          setTodayDate(date);
-          setToDos(() => [...toDos]);
-          router.push(`/calendar?date=${date.toDateString()}`);
+        calendarType={"US"}
+        onClickDay={(date) => {
+          if (value.getMonth() === date.getMonth()) {
+            const toDos = datas.filter(
+              (data) => data.startDate <= date && data.endDate >= date
+            );
+            setTodayDate(date);
+            setToDos(() => [...toDos]);
+            router.push(`/calendar?date=${date.toDateString()}`);
+          }
         }}
         onActiveStartDateChange={(props) => setClick(props.activeStartDate)}
         nextLabel={
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M235.3 132.7c-6.25-6.25-16.38-6.25-22.62 0s-6.25 16.38 0 22.62L313.4 256l-100.7 100.7c-6.25 6.25-6.25 16.38 0 22.62s16.38 6.25 22.62 0l112-112C350.4 264.2 352 260.1 352 256s-1.562-8.188-4.688-11.31L235.3 132.7zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 480c-123.5 0-224-100.5-224-224s100.5-224 224-224s224 100.5 224 224S379.5 480 256 480z" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <path d="M365.3 256l-22.6 22.6-192 192L128 493.3 82.7 448l22.6-22.6L274.7 256 105.4 86.6 82.7 64 128 18.7l22.6 22.6 192 192L365.3 256z" />
             </svg>
           </div>
         }
         prevLabel={
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M299.3 132.7c-6.25-6.25-16.38-6.25-22.62 0l-112 112C161.6 247.8 160 251.9 160 256s1.562 8.188 4.688 11.31l112 112c6.25 6.25 16.38 6.25 22.62 0s6.25-16.38 0-22.62L198.6 256l100.7-100.7C305.6 149.1 305.6 138.9 299.3 132.7zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 480c-123.5 0-224-100.5-224-224s100.5-224 224-224s224 100.5 224 224S379.5 480 256 480z" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <path d="M18.7 256l22.6 22.6 192 192L256 493.3 301.3 448l-22.6-22.6L109.3 256 278.6 86.6 301.3 64 256 18.7 233.4 41.4l-192 192L18.7 256z" />
             </svg>
           </div>
         }
         navigationLabel={({ date, locale }) => {
           return (
-            <div>
-              <span className="month">
-                {date.toLocaleString(locale, {
-                  month: "long",
-                })}
-              </span>
-              {date.toLocaleString(locale, { year: "numeric" })}
-            </div>
+            <div>{`${date.toLocaleString(locale, {
+              year: "numeric",
+            })} . ${date.toLocaleString(locale, { month: "numeric" })}`}</div>
           );
         }}
         minDetail="month"
         locale="en"
         onChange={setValue}
         value={value}
+        tileClassName={({ date }) => (date.getDay() === 6 ? "saturday" : null)}
         tileContent={({ date }) => {
-          const thisWeekMonday = new Date(date);
-          thisWeekMonday.setDate(
-            thisWeekMonday.getDate() -
-              (thisWeekMonday.getDay() === 0 ? 6 : thisWeekMonday.getDay() - 1)
+          const thisWeekSunday = new Date(date);
+          thisWeekSunday.setDate(
+            thisWeekSunday.getDate() - thisWeekSunday.getDay()
           );
           const tiles: Tile[] = [];
           let lastTiles: string[] = [];
           let today: Tile = { date: date, content: [] };
           for (let i = 0; i < 7; i++) {
-            const day = new Date(thisWeekMonday);
+            const day = new Date(thisWeekSunday);
             day.setDate(day.getDate() + i);
             tiles.push({
               date: day,
@@ -568,14 +749,14 @@ const CalendarPage: NextPage = () => {
           }
           for (let i = 0; i < tiles.length; i++) {
             if (i === 0) {
-              const mondayToDos = datas.filter(
+              const sundayToDos = datas.filter(
                 (data, index) =>
                   data.startDate <= tiles[0].date &&
                   data.endDate >= tiles[0].date
               );
-              for (let j = 0; j < mondayToDos.length; j++) {
+              for (let j = 0; j < sundayToDos.length; j++) {
                 let lastDays = Math.ceil(
-                  (mondayToDos[j].endDate.getTime() - tiles[0].date.getTime()) /
+                  (sundayToDos[j].endDate.getTime() - tiles[0].date.getTime()) /
                     (1000 * 60 * 60 * 24)
                 );
                 if (lastDays > 7) lastDays = 7;
@@ -583,12 +764,12 @@ const CalendarPage: NextPage = () => {
                   (element) => element === "possible"
                 );
                 if (indexOfPossible >= 0) {
-                  tiles[i].content[indexOfPossible] = mondayToDos[j].id;
+                  tiles[i].content[indexOfPossible] = sundayToDos[j].id;
                   for (let k = 0; k < lastDays - 1; k++) {
                     if (i + 1 + k < 7) {
                       tiles[i + 1 + k].content[
                         indexOfPossible
-                      ] = `empty/${mondayToDos[j].id}`;
+                      ] = `empty/${sundayToDos[j].id}`;
                     }
                   }
                   if (i + lastDays < 7) {
@@ -636,16 +817,13 @@ const CalendarPage: NextPage = () => {
             if (today.content[i] !== "possible") {
               count++;
             }
-            if (count > 3) {
-              for (let j = 2; j < today.content.length; j++) {
-                if (
-                  !today.content[j].includes("empty") &&
-                  !today.content[j].includes("possible")
-                ) {
+            if (count > 4) {
+              for (let j = 3; j < today.content.length; j++) {
+                if (!today.content[j].includes("possible")) {
                   lastTiles.push(today.content[j]);
                 }
               }
-              today.content = today.content.slice(0, 2);
+              today.content = today.content.slice(0, 3);
             }
           }
           return (
@@ -654,11 +832,11 @@ const CalendarPage: NextPage = () => {
                 !id.includes("empty") && !id.includes("possible") ? (
                   datas.map((data) =>
                     data.id === id ? (
-                      <TileWrapper key={index}>
+                      <TileWrapper key={`today${index}`}>
                         <EmptyDiv />
                         <TodoStartDiv
                           leftDays={
-                            date.getDay() === 1
+                            date.getDay() === 0
                               ? Math.floor(
                                   (data.endDate.getTime() - date.getTime()) /
                                     (1000 * 60 * 60 * 24)
@@ -669,9 +847,9 @@ const CalendarPage: NextPage = () => {
                                     (1000 * 60 * 60 * 24)
                                 )
                           }
-                          day={date.getDay() === 0 ? 0 : 7 - date.getDay()}
+                          day={6 - date.getDay()}
                           className={
-                            date.getDay() === 1
+                            date.getDay() === 0
                               ? `todo ${
                                   data.bluetag
                                 } ${`start-todo left__days__${Math.floor(
@@ -687,7 +865,7 @@ const CalendarPage: NextPage = () => {
                                     data.startDate.getTime()) /
                                     (1000 * 60 * 60 * 24)
                                 )} left__days__this__week__${
-                                  date.getDay() === 0 ? 0 : 7 - date.getDay()
+                                  6 - date.getDay()
                                 }`}`
                           }
                         >
@@ -697,14 +875,15 @@ const CalendarPage: NextPage = () => {
                     ) : null
                   )
                 ) : id.includes("empty") ? (
-                  <BetweenDiv key={index} />
+                  <BetweenDiv key={`empty${index}`} />
                 ) : null
               )}
               {lastTiles.length > 0 ? (
                 <DotContainer>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path d="M120 256c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm160 0c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zm104 56c-30.9 0-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56s-25.1 56-56 56z" />
-                  </svg>
+                  </svg> */}
+                  {`+${lastTiles.length}`}
                 </DotContainer>
               ) : null}
             </>
@@ -728,15 +907,68 @@ const CalendarPage: NextPage = () => {
               </svg>
             </DetailDateTitle>
             <DetailDateToDos>
-              {toDos.map((toDo, index) => (
-                <DetailDateToDo key={index}>
-                  <h1>{toDo.title}</h1>
+              {toDos.length > 0 ? (
+                toDos.map((toDo, index) => (
+                  <DetailDateToDo key={index}>
+                    <h1>{toDo.title}</h1>
+                  </DetailDateToDo>
+                ))
+              ) : (
+                <DetailDateToDo>
+                  <h1>없음</h1>
                 </DetailDateToDo>
-              ))}
+              )}
             </DetailDateToDos>
           </DetailDate>
         </>
       ) : null}
+      <LegendContainer>
+        <h1>Legend</h1>
+        <UnitContainer color={"#64B5FF"}>
+          <div className="left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+            </svg>
+            Event
+          </div>
+          <div className="right">
+            <UnitCount>{`${event} units`}</UnitCount>
+          </div>
+        </UnitContainer>
+        <UnitContainer color={"#ffa0d3"}>
+          <div className="left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+            </svg>
+            Voting
+          </div>
+          <div className="right">
+            <UnitCount>{`${voting} units`}</UnitCount>
+          </div>
+        </UnitContainer>
+        <UnitContainer color={"#9dce99"}>
+          <div className="left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+            </svg>
+            Minting
+          </div>
+          <div className="right">
+            <UnitCount>{`${minting} units`}</UnitCount>
+          </div>
+        </UnitContainer>
+        <UnitContainer color={"#fcc53a"}>
+          <div className="left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+            </svg>
+            Lang
+          </div>
+          <div className="right">
+            <UnitCount>{`${lang} units`}</UnitCount>
+          </div>
+        </UnitContainer>
+      </LegendContainer>
     </Container>
   );
 };
