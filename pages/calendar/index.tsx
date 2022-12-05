@@ -178,6 +178,22 @@ const datas: DataType[] = [
     bluetag: "event",
     id: "20",
   },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-12-29 00:00:00"),
+    endDate: new Date("2022-12-29 23:59:59"),
+    bluetag: "event",
+    id: "21",
+  },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-12-29 00:00:00"),
+    endDate: new Date("2022-12-29 23:59:59"),
+    bluetag: "event",
+    id: "22",
+  },
 ];
 
 const Container = styled.div`
@@ -473,7 +489,7 @@ const Overlay = styled.div`
   top: 0rem;
   left: 0rem;
   z-index: 98;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const DetailDate = styled.div`
@@ -484,6 +500,7 @@ const DetailDate = styled.div`
   align-items: center;
   width: 50rem;
   height: 70rem;
+  padding-bottom: 3rem;
   border-radius: 30px;
   overflow: hidden;
   z-index: 99;
@@ -498,8 +515,8 @@ const DetailDateTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 20%;
-  padding: 0 5rem;
+  height: 15%;
+  padding: 0 3rem;
   font-size: 3rem;
   font-weight: 600;
   svg {
@@ -514,8 +531,8 @@ const DetailDateToDos = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-height: 80%;
-  height: auto;
+  height: 85%;
+  overflow-y: auto;
 `;
 
 const DetailDateToDo = styled.div`
@@ -523,13 +540,15 @@ const DetailDateToDo = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  height: 6rem;
+  min-height: 6rem;
   margin-bottom: 2rem;
   padding: 0 1rem;
   font-size: 1.5rem;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
   h1 {
     white-space: nowrap;
     overflow: hidden;
@@ -564,7 +583,7 @@ const UnitContainer = styled.div<{ color: string }>`
   justify-content: flex-start;
   align-items: center;
   width: 80%;
-  height: 15%;
+  min-height: 60px;
   margin-bottom: 20px;
   font-size: 2rem;
   border-radius: 15px;
@@ -911,6 +930,7 @@ const CalendarPage: NextPage = () => {
                 toDos.map((toDo, index) => (
                   <DetailDateToDo key={index}>
                     <h1>{toDo.title}</h1>
+                    <input type={"checkbox"} />
                   </DetailDateToDo>
                 ))
               ) : (
