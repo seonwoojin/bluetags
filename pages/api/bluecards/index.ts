@@ -17,18 +17,17 @@ import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const bluecards = await client.blueCard.findMany({
-      include: {
-        project: {
-          select: {
-            title: true,
-            chain: true,
-          },
-        },
-      },
-    });
-    console.log(bluecards);
-    return res.status(response.HTTP_OK).json({ bluecards });
+    // const bluecards = await client.blueCard.findMany({
+    //   include: {
+    //     project: {
+    //       select: {
+    //         title: true,
+    //         chain: true,
+    //       },
+    //     },
+    //   },
+    // });
+    return res.status(response.HTTP_OK).json({ ok: "ABcads" });
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });
