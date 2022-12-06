@@ -12,22 +12,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // const bluecards = await client.blueCard.findMany({
-    //   include: {
-    //     project: {
-    //       select: {
-    //         title: true,
-    //         chain: true,
-    //       },
-    //     },
-    //   },
-    // });
-    return res.status(response.HTTP_OK).json({ ok: "ABcads" });
+    return res.status(response.HTTP_OK).json({ ok: true });
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });
@@ -37,3 +26,32 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 export default withApiSession(
   withHandler({ methods: ["GET"], handler, isPrivate: false })
 );
+
+// import { NextApiRequest, NextApiResponse } from "next";
+// import { response } from "constants/response";
+// import withHandler from "@libs/server/withHandler";
+// import client from "@libs/server/client";
+// import { withApiSession } from "@libs/server/withSession";
+
+// async function handler(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     // const bluecards = await client.blueCard.findMany({
+//     //   include: {
+//     //     project: {
+//     //       select: {
+//     //         title: true,
+//     //         chain: true,
+//     //       },
+//     //     },
+//     //   },
+//     // });
+//     return res.status(response.HTTP_OK).json({ ok: "ABcads" });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(response.HTTP_BAD_REQUEST).json({ error });
+//   }
+// }
+
+// export default withApiSession(
+//   withHandler({ methods: ["GET"], handler, isPrivate: false })
+// );
