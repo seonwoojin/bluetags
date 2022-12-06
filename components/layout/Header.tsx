@@ -91,7 +91,7 @@ export default function Header() {
     if (status === 200) {
       mutate("/api/users");
     }
-  }, [status, router]);
+  }, [status, router, mutate]);
   return (
     <NavBarWrapper>
       <Link href={"/"}>

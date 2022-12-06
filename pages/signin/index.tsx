@@ -229,7 +229,7 @@ const WatchList: NextPage = () => {
     if (status === 200) {
       router.push("/");
     }
-  }, [data, status]);
+  }, [data, status, router]);
   return (
     <Container>
       <InfographicContainer>인포그래픽 이미지</InfographicContainer>
