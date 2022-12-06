@@ -18,7 +18,7 @@ import { PrismaClient } from "@prisma/client";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    client = new PrismaClient();
+    const client = new PrismaClient();
     const bluecards = await client.blueCard.findMany({
       include: {
         project: {
