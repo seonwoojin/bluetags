@@ -1,3 +1,15 @@
+/**
+ * @api {post} /users/sign-in 로그인
+ *
+ * @apiVersion        1.0.0
+ * @apiName SignIn
+ * @apiGroup Users
+ *
+ * @apiParam {String} email User's unique Email.
+ * @apiParam {String} password User's password.
+ *
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";

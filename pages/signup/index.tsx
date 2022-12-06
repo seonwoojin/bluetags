@@ -191,7 +191,7 @@ const WatchList: NextPage = () => {
   const [enter, { loading, data, error, status }] = useMutation<
     EnterResponse,
     ErrorResponse
-  >("/api/users/signup");
+  >("/api/users/sign-up");
   const {
     register,
     handleSubmit,

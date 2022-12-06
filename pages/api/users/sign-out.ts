@@ -1,3 +1,13 @@
+/**
+ * @api {post} /users/sign-out 로그아웃
+ *
+ * @apiVersion        1.0.0
+ * @apiName SignOut
+ * @apiGroup Users
+ *
+ *
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";

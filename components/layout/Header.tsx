@@ -86,7 +86,7 @@ export default function Header() {
   const router = useRouter();
   const user = useUser();
   const { mutate } = useSWRConfig();
-  const [signOut, { status }] = useMutation("api/users/signout");
+  const [signOut, { status }] = useMutation("api/users/sign-out");
   useEffect(() => {
     if (status === 200) {
       mutate("/api/users");

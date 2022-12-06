@@ -214,7 +214,7 @@ interface LoginResponse {
 const WatchList: NextPage = () => {
   const router = useRouter();
   const [login, { loading, data, error, status }] =
-    useMutation<LoginResponse>("/api/users/signin");
+    useMutation<LoginResponse>("/api/users/sign-in");
   const {
     register,
     handleSubmit,

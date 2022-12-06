@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import NextCors from "nextjs-cors";
 
 export interface ResponseType {
   ok: boolean;
@@ -36,6 +37,11 @@ export default function withHandler({
       return res.status(401).json({ ok: false, error: "Please log in." });
     }
     try {
+      await NextCors(req, res, {
+        methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+        origin: "*",
+        optionsSuccessStatus: 200,
+      });
       await handler(req, res);
     } catch (error) {
       console.log(error);

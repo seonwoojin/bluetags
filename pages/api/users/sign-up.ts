@@ -1,3 +1,16 @@
+/**
+ * @api {post} /users/sign-up 회원가입
+ *
+ * @apiVersion        1.0.0
+ * @apiName SignUp
+ * @apiGroup Users
+ *
+ * @apiParam {String} email User's unique Email.
+ * @apiParam {String} password User's password.
+ * @apiParam {String} confirm_password User's confirm password.
+ *
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";

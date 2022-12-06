@@ -1,11 +1,12 @@
 /**
- * @api {get} /users 회원정보 확인
+ * @api {get} /bluecards 모든 Bluecard 가져오기
  *
  * @apiVersion        1.0.0
- * @apiName UserCheck
- * @apiGroup Users
+ * @apiName GetAllBluecard
+ * @apiGroup Bluecards
  *
- * @apiSuccess {User} User Information of the User.
+ *
+ * @apiSuccess {BlueCard} BlueCard Information of the BlueCard.
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -16,16 +17,21 @@ import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    if (!req.session.user?.id) {
-      return res.status(response.HTTP_OK).json(null);
-    }
-    const user = await client.user.findUnique({
-      where: { id: req.session.user?.id },
+    const bluecards = await client.blueCard.findMany({
+      include: {
+        project: {
+          select: {
+            title: true,
+            chain: true,
+          },
+        },
+      },
     });
-    return res.status(response.HTTP_OK).json(user);
+    console.log(bluecards);
+    return res.status(response.HTTP_OK).json({ bluecards });
   } catch (error) {
     console.log(error);
-    return res.status(response.HTTP_BAD_REQUEST);
+    return res.status(response.HTTP_BAD_REQUEST).json({ error });
   }
 }
 

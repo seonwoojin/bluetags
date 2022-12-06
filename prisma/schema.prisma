@@ -7,9 +7,9 @@ generator client {
 }
 
 datasource db {
-  provider             = "mongodb"
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -23,7 +23,8 @@ model User {
 
 model BlueCard {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  thunbnail   String
+  title       String
+  thumbnail   String
   summary     String
   description String
   bluetags    String[]
@@ -36,6 +37,7 @@ model BlueCard {
 
 model Project {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  key       String     @unique
   chain     String
   title     String
   BlueCards BlueCard[]
