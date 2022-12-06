@@ -13,7 +13,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { client } from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 import bcrypt from "bcrypt";
 
