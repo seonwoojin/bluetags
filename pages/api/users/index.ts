@@ -11,7 +11,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { prisma } from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -19,7 +19,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (!req.session.user?.id) {
       return res.status(response.HTTP_OK).json(null);
     }
-    const user = await client.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: req.session.user?.id },
     });
     return res.status(response.HTTP_OK).json(user);

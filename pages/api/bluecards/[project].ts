@@ -12,19 +12,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { prisma } from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const project = req.query.project as string;
-    const exist = await client.project.findFirst({
+    const exist = await prisma.project.findFirst({
       where: {
         key: project,
       },
     });
     if (exist) {
-      const bluecards = await client.blueCard.findMany({
+      const bluecards = await prisma.blueCard.findMany({
         where: {
           projectId: exist.id,
         },

@@ -14,14 +14,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { prisma } from "@libs/server/client";
 import bcrypt from "bcrypt";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { email, password, confirm_password } = req.body;
 
-    const emailExists = await client.user.findUnique({
+    const emailExists = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -39,7 +39,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       });
     }
 
-    const user = await client.user.create({
+    const user = await prisma.user.create({
       data: {
         email,
         password: await bcrypt.hash(password, 5),

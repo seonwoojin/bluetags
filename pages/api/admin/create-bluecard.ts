@@ -19,7 +19,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { prisma } from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 interface Request {
@@ -46,7 +46,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       project,
     }: Request = req.body;
     const bluetagsArray = bluetags.replaceAll(" ", "").split(",");
-    const bluecard = await client.blueCard.create({
+    const bluecard = await prisma.blueCard.create({
       data: {
         title,
         thumbnail,

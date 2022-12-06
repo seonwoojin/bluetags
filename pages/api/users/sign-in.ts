@@ -13,14 +13,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
-import client from "@libs/server/client";
+import { prisma } from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 import bcrypt from "bcrypt";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { email, password } = req.body;
-    const user = await client.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         email,
       },
