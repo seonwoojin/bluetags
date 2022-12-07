@@ -6,7 +6,7 @@
  * @apiGroup Bluecards
  *
  *
- * @apiSuccess {BlueCard} BlueCard Information of the project's BlueCard.
+ * @apiSuccess {Object(BlueCard)} BlueCard Information of the project's BlueCard.
  */
 
 import { NextApiRequest, NextApiResponse } from "next";

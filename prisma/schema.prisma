@@ -17,7 +17,8 @@ model User {
   password     String
   admin        Boolean?  @default(false)
   createdAt    DateTime? @default(now())
-  readBlueCard String[]
+  readBlueCard String
+  subscribe    String
 }
 
 model BlueCard {
