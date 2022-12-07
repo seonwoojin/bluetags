@@ -43,6 +43,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       data: {
         email,
         password: await bcrypt.hash(password, 5),
+        readBlueCard: [],
+        subscribe: [],
       },
     });
 

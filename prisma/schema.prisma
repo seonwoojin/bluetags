@@ -18,6 +18,7 @@ model User {
   admin        Boolean?  @default(false)
   createdAt    DateTime? @default(now())
   readBlueCard String[]
+  subscribe    String[]
 }
 
 model BlueCard {
