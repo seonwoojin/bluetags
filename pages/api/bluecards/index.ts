@@ -24,11 +24,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           select: {
             title: true,
             chain: true,
+            logoUrl: true,
           },
         },
       },
     });
-    return res.status(response.HTTP_OK).json({ ok: bluecards });
+    return res.status(response.HTTP_OK).json({ bluecards });
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });

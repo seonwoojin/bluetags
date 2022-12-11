@@ -215,7 +215,7 @@ const WatchList: NextPage = () => {
       }
     }
     if (status === 200) {
-      router.push("/");
+      router.push("/signin");
     }
   }, [data, error, status, router, setError]);
   return (

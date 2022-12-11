@@ -20,6 +20,7 @@
     "iron-session": "^6.3.1",
     "next": "13.0.3",
     "nextjs-cors": "^2.1.2",
+    "nodemailer": "^6.8.0",
     "react": "18.2.0",
     "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/nodemailer": "^6.4.6",
     "@types/react-calendar": "^3.9.0",
     "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",

@@ -1,14 +1,12 @@
 /**
- * @api {post} /users/subscribe 프로젝트 구독
+ * @api {post} /bluecards/user-read 프로젝트 구독
  *
  * @apiVersion        1.0.0
- * @apiName SubscribeProject
- * @apiGroup Users
+ * @apiName ReadBluecards
+ * @apiGroup Bluecards
  *
  * @apiParam {String} email User's unique Email.
- * @apiParam {String} projectId Project's id.
- *
- * @apiSuccess {String[]} User.subscribe Information of the User.subscribe.
+ * @apiParam {String} bluecardId Bluecard's id.
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -18,54 +16,38 @@ import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 interface Request {
-  projectId: string;
+  bluecardId: string;
   email: string;
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { projectId, email }: Request = req.body;
+    const { bluecardId, email }: Request = req.body;
     const user = await client.user.findUnique({
       where: {
         email: email,
       },
     });
-    const project = await client.project.findFirst({
+    const bluecard = await client.blueCard.findFirst({
       where: {
-        id: projectId,
+        id: bluecardId,
       },
     });
-    if (user && project) {
-      if (user.subscribe.includes(projectId)) {
-        const preArray: string[] = [];
-        user.subscribe.map((project) => {
-          if (project !== projectId) preArray.push(project);
-        });
+    if (user && bluecard) {
+      if (!user.readBlueCard.includes(bluecardId)) {
         const updateUser = await client.user.update({
           where: {
             email: email,
           },
           data: {
-            subscribe: preArray,
-          },
-        });
-        return res
-          .status(response.HTTP_OK)
-          .json({ subscribe: updateUser.subscribe });
-      } else {
-        const updateUser = await client.user.update({
-          where: {
-            email: email,
-          },
-          data: {
-            subscribe: {
-              push: projectId,
+            readBlueCard: {
+              push: bluecardId,
             },
           },
         });
         return res
           .status(response.HTTP_OK)
-          .json({ subscribe: updateUser.subscribe });
+          .json({ subscribe: updateUser.readBlueCard });
       }
     }
     //const user = req.session.user;

@@ -202,44 +202,39 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-interface LoginForm {
-  email: string;
-  password: string;
+interface AuthForm {
+  payload: string;
 }
 
-interface LoginResponse {
+interface AuthResponse {
   error?: string;
   auth?: string;
 }
 
 const WatchList: NextPage = () => {
   const router = useRouter();
-  const [login, { loading, data, error, status }] =
-    useMutation<LoginResponse>("/api/users/sign-in");
+  const [auth, { loading, data, error, status }] =
+    useMutation<AuthResponse>("/api/users/auth");
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<LoginForm>();
-  const onValid = (validForm: LoginForm) => {
+  } = useForm<AuthForm>();
+  const onValid = (validForm: AuthForm) => {
     if (loading) return;
-    login(validForm);
   };
   useEffect(() => {
-    if (data) {
-      if (!data?.auth) {
-        router.push("/signin/auth");
-      } else if (status === 200) {
-        router.push("/");
-      }
-    }
+    console.log(data?.auth);
+    // if (status === 200) {
+    //   router.push("/");
+    // }
   }, [data, status, router]);
   return (
     <Container>
       <InfographicContainer>인포그래픽 이미지</InfographicContainer>
       <LoginContainer>
-        <FormContainer>
+        {/* <FormContainer>
           <TitleContainer>
             <Link href="/">
               <TitleLogo>LOGO</TitleLogo> BlueTags
@@ -274,24 +269,11 @@ const WatchList: NextPage = () => {
             <InputWrapper>
               <Label htmlFor="email">Email Address</Label>
               <Input
-                {...register("email", {
+                {...register("payload", {
                   required: "Please enter your email.",
                 })}
                 id="email"
                 placeholder="Eamil"
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <Label htmlFor="password">
-                Password<Link href="/">Forgot password?</Link>
-              </Label>
-              <Input
-                {...register("password", {
-                  required: "Please enter your password.",
-                })}
-                type={"password"}
-                id="password"
-                placeholder="Password"
               />
             </InputWrapper>
             <MessageContainer>
@@ -304,7 +286,64 @@ const WatchList: NextPage = () => {
               </ButtonWrapper>
             </MessageContainer>
           </LoginForm>
-        </FormContainer>
+        </FormContainer> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "500px",
+              height: "250px",
+              marginTop: "30px",
+              padding: "30px 20px",
+              border: "1px solid rgba(0,0,0,0.2)",
+            }}
+          >
+            <h1 style={{ fontSize: "25px", color: "rgba(0,0,0,0.7)" }}>
+              Confirm your email address.
+            </h1>
+            <a
+              href={
+                process.env.NODE_ENV === "development"
+                  ? "http://localhost:3000/signup/auth/validate"
+                  : "https://bluetags.vercel.app/signup/auth/validate"
+              }
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "250px",
+                    height: "50px",
+                    border: "none",
+                    backgroundColor: "rgb(55, 51, 255)",
+                    color: "white",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Confirm email address
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
       </LoginContainer>
     </Container>
   );

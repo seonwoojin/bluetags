@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import styled from "styled-components";
 import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
+import { BluecardWithProject } from "pages";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -34,7 +35,11 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function BlueCardHorizontalSlider() {
+interface Data {
+  data: BluecardWithProject[];
+}
+
+export default function BlueCardHorizontalSlider({ data }: Data) {
   const settings = {
     dots: true,
     infinite: true,
@@ -61,11 +66,13 @@ export default function BlueCardHorizontalSlider() {
   };
   return (
     <div>
-      <StyledSlider {...settings}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-          <BlueCardHorizontal key={card} num={card} />
-        ))}
-      </StyledSlider>
+      {data ? (
+        <StyledSlider {...settings}>
+          {data.map((bluecard, index) => (
+            <BlueCardHorizontal key={index} data={bluecard} />
+          ))}
+        </StyledSlider>
+      ) : null}
     </div>
   );
 }

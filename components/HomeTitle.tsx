@@ -2,22 +2,25 @@ import styled from "styled-components";
 
 const TitleContainer = styled.div`
   width: 100%;
-  height: 12rem;
+  height: auto;
   display: flex;
   flex-direction: column;
-  padding-left: 10rem;
-`;
-
-const SubTitle = styled.div`
-  width: 100%;
-  height: 4rem;
-  font-size: 2rem;
+  margin-bottom: 30px;
 `;
 
 const Title = styled.div`
   width: 100%;
-  height: 8rem;
-  font-size: 4rem;
+  height: 42px;
+  font-size: 26px;
+  color: #1c1b1b;
+  font-weight: lighter;
+`;
+
+const SubTitle = styled.div`
+  width: 100%;
+  font-size: 16px;
+  color: rgba(28, 27, 27, 0.5);
+  font-weight: bold;
 `;
 
 interface TitleProps {
@@ -28,8 +31,8 @@ interface TitleProps {
 export default function HomeTitle({ subTitle, title }: TitleProps) {
   return (
     <TitleContainer>
-      <SubTitle>{subTitle}</SubTitle>
       <Title>{title}</Title>
+      <SubTitle>{subTitle}</SubTitle>
     </TitleContainer>
   );
 }

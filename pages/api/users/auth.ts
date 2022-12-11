@@ -15,37 +15,27 @@ import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
 import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
-import bcrypt from "bcrypt";
+import nodemailer from "nodemailer";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { email, password } = req.body;
-    const user = await client.user.findUnique({
-      where: {
-        email,
+    const { email } = req.body;
+    const trasnproter = nodemailer.createTransport({
+      host: "stmp.gmail.com",
+      service: "gmail",
+      auth: {
+        user: "wlstjsdn12@gmail.com",
+        pass: "ylwhsvyoisdjnizu",
       },
     });
-    if (!user) {
-      return res.status(response.HTTP_UNAUTHORIZED).json({
-        error: "An account with this email does not exitst",
-      });
-    }
 
-    if (!(await bcrypt.compare(password, user.password))) {
-      return res.status(response.HTTP_UNAUTHORIZED).json({
-        error: "Wrong password.",
-      });
-    }
-
-    if (!user.auth) {
-      return res.status(response.HTTP_OK).json({ auth: false });
-    }
-
-    req.session.user = {
-      id: user.id,
-    };
-    await req.session.save();
-    return res.status(response.HTTP_OK).json(user);
+    const info = await trasnproter.sendMail({
+      from: "wlstjsdn12@gmail.com",
+      to: email,
+      subject: "[Bluetags] Confirm Your Email",
+      html: '<p>Click <a href="http://localhost:3000/signup/auth/validate">here</a> to reset your password</p>',
+    });
+    return res.status(response.HTTP_OK).end();
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });

@@ -51,7 +51,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(response.HTTP_OK).end();
   } catch (error) {
     console.log(error);
-    return res.status(response.HTTP_BAD_REQUEST);
+    return res.status(response.HTTP_BAD_REQUEST).json({ error });
   }
 }
 

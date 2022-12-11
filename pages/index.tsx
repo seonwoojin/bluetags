@@ -6,6 +6,8 @@ import BlueCardHorizontalSlider from "@components/slider/BlueCardHorizontalSlide
 import BlueCardSmall from "@components/bluecard/BlueCardSmall";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 import useUser from "./../libs/client/useUser";
+import useSWR from "swr";
+import { BlueCard, Project } from "@prisma/client";
 
 const Container = styled.div`
   display: flex;
@@ -14,8 +16,8 @@ const Container = styled.div`
   width: 100vw;
   min-width: 1500px;
   height: 500vh;
-  padding-top: 15rem;
-  padding-left: 20rem;
+  padding-top: 13rem;
+  padding-left: 33rem;
 `;
 
 const ContextWrapper = styled.div`
@@ -29,24 +31,38 @@ const ContextWrapper = styled.div`
 `;
 
 const SlideWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   font-size: 4rem;
 `;
 
+export interface BluecardWithProject extends BlueCard {
+  project: Project;
+}
+
+interface Response {
+  data: {
+    bluecards: BluecardWithProject[];
+  };
+  status: number;
+}
+
 const Home: NextPage = () => {
   const user = useUser();
+  const { data } = useSWR<Response>("/api/bluecards");
   return (
     <Container>
       <ContextWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
-          <BlueCardMediumSlider />
+          {data ? <BlueCardMediumSlider data={data.data.bluecards} /> : null}
         </SlideWrapper>
       </ContextWrapper>
       <ContextWrapper>
         <HomeTitle subTitle="Horizontal" title="BlueCard" />
         <SlideWrapper>
-          <BlueCardHorizontalSlider />
+          {data ? (
+            <BlueCardHorizontalSlider data={data.data.bluecards} />
+          ) : null}
         </SlideWrapper>
       </ContextWrapper>
       <ContextWrapper>
