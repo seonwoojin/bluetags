@@ -8,6 +8,7 @@ import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 import useUser from "./../libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
+import SkeletonBlueCardMediumSlider from "./../components/skeleton/SkeletonBlueCardMeduimSlider";
 
 const Container = styled.div`
   display: flex;
@@ -48,13 +49,18 @@ interface Response {
 
 const Home: NextPage = () => {
   const user = useUser();
-  const { data } = useSWR<Response>("/api/bluecards");
+  const { data, isValidating } = useSWR<Response>("/api/bluecards");
+  console.log(isValidating);
   return (
     <Container>
       <ContextWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
-          {data ? <BlueCardMediumSlider data={data.data.bluecards} /> : null}
+          {isValidating ? (
+            <SkeletonBlueCardMediumSlider />
+          ) : data ? (
+            <BlueCardMediumSlider data={data.data.bluecards} />
+          ) : null}
         </SlideWrapper>
       </ContextWrapper>
       <ContextWrapper>

@@ -43,7 +43,6 @@ interface Data {
 }
 
 export default function BlueCardMediumSlider({ data }: Data) {
-  console.log(data);
   const settings = {
     dots: true,
     infinite: true,

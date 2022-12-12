@@ -1,7 +1,5 @@
-import Image from "next/image";
 import styled from "styled-components";
 import { BluecardWithProject } from "pages";
-import { url } from "inspector";
 
 const BlueCardContainer = styled.div`
   position: relative;
@@ -150,7 +148,6 @@ interface SliderProps {
 }
 
 export default function BlueCardMedium({ data }: SliderProps) {
-  console.log(data.project.logoUrl);
   return (
     <BlueCardContainer>
       <BlueCardBackGround>
