@@ -208,8 +208,8 @@ export default function SkeletonBlueCardMediumSlider() {
   return (
     <div>
       <StyledSlider {...settings}>
-        {[1, 2, 3, 4, 5].map(() => (
-          <BlueCardContainer>
+        {[1, 2, 3, 4, 5].map((index) => (
+          <BlueCardContainer key={index}>
             <BlueCardBackGround></BlueCardBackGround>
             <BlueCardText>
               <TitleContainer>

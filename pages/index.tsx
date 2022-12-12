@@ -50,7 +50,6 @@ interface Response {
 const Home: NextPage = () => {
   const user = useUser();
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
-  console.log(isValidating);
   return (
     <Container>
       <ContextWrapper>
