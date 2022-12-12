@@ -14,14 +14,14 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: "/example",
-        destination: "http://localhost:3000/api/users/example",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "https://gift-pursue-290895.framer.app/",
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

@@ -5,10 +5,10 @@ import styled from "styled-components";
 import BlueCardHorizontalSlider from "@components/slider/BlueCardHorizontalSlider";
 import BlueCardSmall from "@components/bluecard/BlueCardSmall";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
-import useUser from "./../libs/client/useUser";
+import useUser from "../libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
-import SkeletonBlueCardMediumSlider from "./../components/skeleton/SkeletonBlueCardMeduimSlider";
+import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
 
 const Container = styled.div`
   display: flex;
