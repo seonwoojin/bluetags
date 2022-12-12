@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       {[
-        "/service",
+        "/",
         "/news",
         "/watchlist",
         "/calendar",
