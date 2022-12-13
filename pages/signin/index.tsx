@@ -229,7 +229,7 @@ const WatchList: NextPage = () => {
   useEffect(() => {
     if (data) {
       if (!data?.auth) {
-        router.push("/signin/auth");
+        router.push("/signup/auth");
       } else if (status === 200) {
         router.push("/");
       }

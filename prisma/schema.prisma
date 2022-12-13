@@ -24,10 +24,9 @@ model User {
 }
 
 model Token {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  payload String @unique
-  user    User   @relation(fields: [userId], references: [id])
-  userId  String @db.ObjectId
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
 }
 
 model BlueCard {
@@ -51,4 +50,13 @@ model Project {
   title     String
   logoUrl   String
   BlueCards BlueCard[]
+}
+
+model NewsCard {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  thumbnail   String
+  summary     String
+  description String
+  createdAt   DateTime @default(now())
 }

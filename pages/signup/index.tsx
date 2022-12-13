@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import useMutation from "./../../libs/client/useMutation";
 import { useRouter } from "next/router";
+import { User } from "@prisma/client";
 
 const Container = styled.div`
   display: flex;
@@ -177,6 +178,7 @@ interface EnterForm {
 }
 
 interface EnterResponse {
+  user: User;
   error?: { email: string; password: string; confirm_password: string };
 }
 
@@ -192,6 +194,7 @@ const WatchList: NextPage = () => {
     EnterResponse,
     ErrorResponse
   >("/api/users/sign-up");
+  const [auth, {}] = useMutation("/api/users/sign-up/auth");
   const {
     register,
     handleSubmit,
@@ -215,7 +218,8 @@ const WatchList: NextPage = () => {
       }
     }
     if (status === 200) {
-      router.push("/signin");
+      auth({ email: data?.user.email });
+      router.push("/signup/auth");
     }
   }, [data, error, status, router, setError]);
   return (

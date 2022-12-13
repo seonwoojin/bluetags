@@ -48,7 +48,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    return res.status(response.HTTP_OK).end();
+    const token = await client.token.create({
+      data: {
+        user: {
+          connect: {
+            email: user.email,
+          },
+        },
+      },
+    });
+
+    return res.status(response.HTTP_OK).json({ user });
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });

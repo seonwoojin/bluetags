@@ -18,8 +18,31 @@ import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log(123);
-    return res.status(response.HTTP_OK).end();
+    const { tokenId } = req.body;
+    const token = await client.token.findFirst({
+      where: {
+        id: tokenId,
+      },
+    });
+    console.log(token);
+    if (token) {
+      const user = await client.user.update({
+        where: {
+          id: token.userId,
+        },
+        data: {
+          auth: true,
+        },
+      });
+      await client.token.deleteMany({
+        where: {
+          userId: token.userId,
+        },
+      });
+      return res.status(response.HTTP_OK).end();
+    } else {
+      return res.status(response.HTTP_BAD_REQUEST).end();
+    }
   } catch (error) {
     console.log(error);
     return res.status(response.HTTP_BAD_REQUEST).json({ error });
