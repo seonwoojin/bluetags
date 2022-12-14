@@ -1,11 +1,11 @@
 /**
- * @api {get} /users 회원정보 확인
+ * @api {post} /users/social social 로그인 회원정보 확인
  *
  * @apiVersion        1.0.0
- * @apiName UserCheck
+ * @apiName SocialUserCheck
  * @apiGroup Users
  *
- * @apiSuccess {User} User Information of the User.
+ * @apiSuccess {User} User Information of the Social User.
  */
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -16,10 +16,10 @@ import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log(req.session);
-    if (!req.session.user?.id) {
+    if (!req.query.emaild) {
       return res.status(response.HTTP_OK).json(null);
     }
+    console.log(req.query.email);
     const user = await client.user.findUnique({
       where: { id: req.session.user?.id },
     });

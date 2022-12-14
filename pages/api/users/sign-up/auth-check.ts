@@ -1,12 +1,11 @@
 /**
- * @api {post} /users/sign-in 로그인
+ * @api {post} /users/sign-up/auth-check 이메일 인증 확인
  *
  * @apiVersion        1.0.0
- * @apiName SignIn
+ * @apiName Auth-check
  * @apiGroup Users
  *
- * @apiParam {String} email User's unique Email.
- * @apiParam {String} password User's password.
+ * @apiParam {String} tokenId User's token Id.
  *
  */
 

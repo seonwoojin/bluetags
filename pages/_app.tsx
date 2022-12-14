@@ -7,14 +7,14 @@ import { SWRConfig } from "swr";
 import axios from "axios";
 import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SWRConfig
       value={{
         fetcher: (url: string) => axios.get(url),
       }}
     >
-      <SessionProvider session={session}>
+      <SessionProvider session={pageProps.session}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Layout>

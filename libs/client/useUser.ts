@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
 
 interface UserResponse {
   data: User;

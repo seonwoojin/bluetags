@@ -9,6 +9,7 @@ import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
 import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
+import useSocialUser from "./../libs/client/useSocialUser";
 
 const Container = styled.div`
   display: flex;
@@ -49,6 +50,7 @@ interface Response {
 
 const Home: NextPage = () => {
   const user = useUser();
+  const socialUser = useSocialUser();
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
   return (
     <Container>

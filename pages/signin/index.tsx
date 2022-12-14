@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Container = styled.div`
   display: flex;
@@ -214,6 +215,8 @@ interface LoginResponse {
 
 const WatchList: NextPage = () => {
   const router = useRouter();
+  const { data: session } = useSession();
+  console.log(session);
   const [login, { loading, data, error, status }] =
     useMutation<LoginResponse>("/api/users/sign-in");
   const {
@@ -246,7 +249,7 @@ const WatchList: NextPage = () => {
             </Link>
           </TitleContainer>
           <SocialLoginContainer>
-            <SocialLogin>
+            <SocialLogin onClick={() => signIn()}>
               <svg
                 style={{ width: "3rem" }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +259,7 @@ const WatchList: NextPage = () => {
               </svg>
               Sign in with google
             </SocialLogin>
-            <SocialLogin>
+            <SocialLogin onClick={() => signOut()}>
               <svg
                 style={{ width: "2rem" }}
                 xmlns="http://www.w3.org/2000/svg"

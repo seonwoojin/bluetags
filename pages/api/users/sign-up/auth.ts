@@ -1,12 +1,11 @@
 /**
- * @api {post} /users/sign-in 로그인
+ * @api {post} /users/sign-up/auth 이메일 인증 메일 발송
  *
  * @apiVersion        1.0.0
- * @apiName SignIn
+ * @apiName Email Auth
  * @apiGroup Users
  *
  * @apiParam {String} email User's unique Email.
- * @apiParam {String} password User's password.
  *
  */
 
