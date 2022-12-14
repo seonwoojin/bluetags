@@ -19,7 +19,7 @@ const InfographicContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 30%;
   height: 100%;
   font-size: 8rem;
   color: black;
@@ -31,7 +31,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 70%;
   height: 100%;
 `;
 
@@ -76,7 +76,7 @@ const SocialLoginContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  height: 15rem;
+  height: 10rem;
   margin-bottom: 3rem;
 `;
 
@@ -237,7 +237,7 @@ const WatchList: NextPage = () => {
   }, [data, status, router]);
   return (
     <Container>
-      <InfographicContainer>인포그래픽 이미지</InfographicContainer>
+      <InfographicContainer></InfographicContainer>
       <LoginContainer>
         <FormContainer>
           <TitleContainer>
