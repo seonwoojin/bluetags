@@ -216,9 +216,17 @@ interface LoginResponse {
 const WatchList: NextPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  console.log(session);
   const [login, { loading, data, error, status }] =
     useMutation<LoginResponse>("/api/users/sign-in");
+  const [
+    socialLogin,
+    {
+      loading: socialLoading,
+      data: socialData,
+      error: socialError,
+      status: socialStatus,
+    },
+  ] = useMutation("/api/users/sign-in/social/google");
   const {
     register,
     handleSubmit,
@@ -229,6 +237,17 @@ const WatchList: NextPage = () => {
     if (loading) return;
     login(validForm);
   };
+  useEffect(() => {
+    if (session?.user && !socialLoading) {
+      socialLogin(session.user);
+    }
+  }, [session]);
+  useEffect(() => {
+    if (socialStatus === 200) {
+      router.push("/");
+    }
+  }, [socialStatus]);
+  console.log(session);
   useEffect(() => {
     if (data) {
       if (!data?.auth) {
@@ -249,7 +268,7 @@ const WatchList: NextPage = () => {
             </Link>
           </TitleContainer>
           <SocialLoginContainer>
-            <SocialLogin onClick={() => signIn()}>
+            <SocialLogin onClick={() => signIn("google")}>
               <svg
                 style={{ width: "3rem" }}
                 xmlns="http://www.w3.org/2000/svg"

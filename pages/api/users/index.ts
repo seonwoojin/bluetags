@@ -13,16 +13,14 @@ import { response } from "constants/response";
 import withHandler from "@libs/server/withHandler";
 import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
+import getUser from "@libs/server/getUser";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log(req.session);
     if (!req.session.user?.id) {
       return res.status(response.HTTP_OK).json(null);
     }
-    const user = await client.user.findUnique({
-      where: { id: req.session.user?.id },
-    });
+    const user = await getUser(req.session.user.id);
     return res.status(response.HTTP_OK).json(user);
   } catch (error) {
     console.log(error);

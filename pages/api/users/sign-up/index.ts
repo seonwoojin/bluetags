@@ -6,6 +6,7 @@
  * @apiGroup Users
  *
  * @apiParam {String} email User's unique Email.
+ * @apiParam {String} name User's name.
  * @apiParam {String} password User's password.
  * @apiParam {String} confirm_password User's confirm password.
  *
@@ -19,7 +20,7 @@ import bcrypt from "bcrypt";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { email, password, confirm_password } = req.body;
+    const { email, name, password, confirm_password } = req.body;
 
     const emailExists = await client.user.findUnique({
       where: {
@@ -42,6 +43,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const user = await client.user.create({
       data: {
         email,
+        name,
         password: await bcrypt.hash(password, 5),
         readBlueCard: [],
         subscribe: [],

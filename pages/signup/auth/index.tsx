@@ -58,12 +58,6 @@ const WatchList: NextPage = () => {
   const onValid = (validForm: AuthForm) => {
     if (loading) return;
   };
-  useEffect(() => {
-    console.log(data?.auth);
-    // if (status === 200) {
-    //   router.push("/");
-    // }
-  }, [data, status, router]);
   return (
     <Container>
       <InfographicContainer>인포그래픽 이미지</InfographicContainer>

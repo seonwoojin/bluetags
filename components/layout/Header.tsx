@@ -6,6 +6,7 @@ import useUser from "@libs/client/useUser";
 import useMutation from "./../../libs/client/useMutation";
 import { useSWRConfig } from "swr";
 import { useEffect } from "react";
+import { signOut } from "next-auth/react";
 
 /** NavBar 전체 div */
 const NavBarWrapper = styled.div`
@@ -79,7 +80,7 @@ export default function Header() {
   const router = useRouter();
   const user = useUser();
   const { mutate } = useSWRConfig();
-  const [signOut, { status }] = useMutation("api/users/sign-out");
+  const [logOut, { status }] = useMutation("api/users/sign-out");
   useEffect(() => {
     if (status === 200) {
       mutate("/api/users");
@@ -111,7 +112,6 @@ export default function Header() {
       <UserContainer>
         {user.user ? (
           <>
-            {" "}
             <UserText>
               <svg
                 width="40"
@@ -155,7 +155,7 @@ export default function Header() {
                 <rect width="40" height="40" rx="8" fill="#DDDDDD" />
               </svg>
             </UserText>
-            <UserText>{user.user?.email}</UserText>
+            <UserText>{user.user?.name}</UserText>
             <UserText>
               <svg
                 width="24"
@@ -170,13 +170,24 @@ export default function Header() {
                 />
               </svg>
             </UserText>
-            <UserText
-              onClick={() => {
-                signOut({});
-              }}
-            >
-              Sign Out
-            </UserText>
+            {user.user.isSocial ? (
+              <UserText
+                onClick={() => {
+                  signOut();
+                  logOut({});
+                }}
+              >
+                Sign Out
+              </UserText>
+            ) : (
+              <UserText
+                onClick={() => {
+                  logOut({});
+                }}
+              >
+                Sign Out
+              </UserText>
+            )}
           </>
         ) : (
           <Link href={"/signin"}>

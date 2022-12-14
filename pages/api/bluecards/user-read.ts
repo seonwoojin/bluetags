@@ -17,15 +17,15 @@ import { withApiSession } from "@libs/server/withSession";
 
 interface Request {
   bluecardId: string;
-  email: string;
+  userId: string;
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { bluecardId, email }: Request = req.body;
+    const { bluecardId, userId }: Request = req.body;
     const user = await client.user.findUnique({
       where: {
-        email: email,
+        id: userId,
       },
     });
     const bluecard = await client.blueCard.findFirst({
@@ -37,7 +37,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       if (!user.readBlueCard.includes(bluecardId)) {
         const updateUser = await client.user.update({
           where: {
-            email: email,
+            id: userId,
           },
           data: {
             readBlueCard: {
@@ -50,7 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           .json({ subscribe: updateUser.readBlueCard });
       }
     }
-    //const user = req.session.user;
+
     return res.status(response.HTTP_OK).end();
   } catch (error) {
     console.log(error);

@@ -23,7 +23,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         id: tokenId,
       },
     });
-    console.log(token);
     if (token) {
       const user = await client.user.update({
         where: {

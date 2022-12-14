@@ -14,13 +14,27 @@ datasource db {
 model User {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   email        String    @unique
+  name         String
   password     String
+  profile      String    @default("")
   auth         Boolean   @default(false)
   admin        Boolean?  @default(false)
   createdAt    DateTime? @default(now())
   readBlueCard String[]
   subscribe    String[]
   Token        Token[]
+  isSocial     Boolean   @default(false)
+}
+
+model SocialUser {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  email        String    @unique
+  name         String
+  profile      String    @default("")
+  createdAt    DateTime? @default(now())
+  readBlueCard String[]
+  subscribe    String[]
+  isSocial     Boolean   @default(true)
 }
 
 model Token {

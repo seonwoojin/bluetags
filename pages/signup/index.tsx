@@ -173,17 +173,24 @@ const Button = styled.button`
 
 interface EnterForm {
   email: string;
+  name: string;
   password: string;
   confirm_password: string;
 }
 
 interface EnterResponse {
   user: User;
-  error?: { email: string; password: string; confirm_password: string };
+  error?: {
+    email: string;
+    password: string;
+    confirm_password: string;
+    name: string;
+  };
 }
 
 interface ErrorResponse {
   email: string;
+  name: string;
   password: string;
   confirm_password: string;
 }
@@ -216,6 +223,9 @@ const WatchList: NextPage = () => {
       if (error.password) {
         setError("password", { message: error.password });
       }
+      if (error.name) {
+        setError("name", { message: error.name });
+      }
     }
     if (status === 200) {
       auth({ email: data?.user.email });
@@ -243,6 +253,18 @@ const WatchList: NextPage = () => {
                 })}
                 id="email"
                 placeholder="Eamil"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor="name">
+                Name<div>{errors.name?.message}</div>
+              </Label>
+              <Input
+                {...register("name", {
+                  required: "Please enter your name.",
+                })}
+                id="name"
+                placeholder="Name"
               />
             </InputWrapper>
             <InputWrapper>
