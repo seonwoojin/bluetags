@@ -247,7 +247,6 @@ const WatchList: NextPage = () => {
       router.push("/");
     }
   }, [socialStatus]);
-  console.log(session);
   useEffect(() => {
     if (data) {
       if (!data?.auth) {
