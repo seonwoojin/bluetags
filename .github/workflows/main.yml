@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  S3_BUCKET_NAME: bluetags-build
+  CODE_DEPLOY_APPLICATION_NAME: bluetags-codedeploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: bluetags-group
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -45,8 +50,9 @@ jobs:
           npm install
           npm run build
 
-      - name: zip file
-        run: zip -r hous.zip ./dist ./scripts ./appspec.yml ./.env ./package.json
+      - name: Make zip file
+        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
+        shell: bash
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -56,11 +62,12 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./hous.zip s3://hous-build/deploy/
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
 
-      - name: deploy with AWS codeDeploy
-        run: aws deploy create-deployment
-          --application-name hous-codedeploy
-          --deployment-config-name CodeDeployDefault.OneAtATime
-          --deployment-group-name GROUP
-          --s3-location bucket=hous-build,bundleType=zip,key=deploy/hous.zip
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
