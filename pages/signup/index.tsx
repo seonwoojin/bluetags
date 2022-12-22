@@ -6,6 +6,7 @@ import styled from "styled-components";
 import useMutation from "./../../libs/client/useMutation";
 import { useRouter } from "next/router";
 import { User } from "@prisma/client";
+import useUser from "@libs/client/useUser";
 
 const Container = styled.div`
   display: flex;
@@ -196,6 +197,7 @@ interface ErrorResponse {
 }
 
 const WatchList: NextPage = () => {
+  const user = useUser();
   const router = useRouter();
   const [enter, { loading, data, error, status }] = useMutation<
     EnterResponse,
@@ -212,6 +214,11 @@ const WatchList: NextPage = () => {
     if (loading) return;
     enter(validForm);
   };
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
   useEffect(() => {
     if (error) {
       if (error.confirm_password) {

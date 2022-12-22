@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
+import useUser from "./../../libs/client/useUser";
 
 const Container = styled.div`
   display: flex;
@@ -214,6 +215,7 @@ interface LoginResponse {
 }
 
 const WatchList: NextPage = () => {
+  const user = useUser();
   const router = useRouter();
   const { data: session } = useSession();
   const [login, { loading, data, error, status }] =
@@ -237,6 +239,11 @@ const WatchList: NextPage = () => {
     if (loading) return;
     login(validForm);
   };
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
   useEffect(() => {
     if (session?.user && !socialLoading) {
       socialLogin(session.user);
@@ -268,14 +275,20 @@ const WatchList: NextPage = () => {
           </TitleContainer>
           <SocialLoginContainer>
             <SocialLogin onClick={() => signIn("google")}>
-              <svg
-                style={{ width: "3rem" }}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 488 512"
-              >
-                <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-              </svg>
-              Sign in with google
+              {session?.user ? (
+                "Logged in"
+              ) : (
+                <>
+                  <svg
+                    style={{ width: "3rem" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 488 512"
+                  >
+                    <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                  </svg>
+                  Sign in with google
+                </>
+              )}
             </SocialLogin>
             <SocialLogin onClick={() => signOut()}>
               <svg

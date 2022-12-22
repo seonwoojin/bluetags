@@ -40,7 +40,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         id: newUser.id,
       };
       await req.session.save();
-      return res.status(response.HTTP_OK).json(newUser);
+      return res.status(response.HTTP_OK).redirect("/").json(newUser);
     } else if (user) {
       req.session.user = {
         id: user.id,
