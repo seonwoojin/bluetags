@@ -70,7 +70,7 @@ const Home: NextPage = () => {
         </SlideWrapper>
       </ContextWrapper>
       <ContextWrapper>
-        <HomeTitle subTitle="Small1" title="BlueCard" />
+        <HomeTitle subTitle="Small" title="BlueCard" />
         <BlueCardSmall num={1} />
       </ContextWrapper>
     </Container>
