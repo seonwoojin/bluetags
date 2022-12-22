@@ -51,9 +51,7 @@ jobs:
           npm run build
 
       - name: Make zip file
-        run: /
-          cd .next
-          zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
+        run: zip -qq -r ./.next/$GITHUB_SHA.zip . -x "node_modules/*"
         shell: bash
 
       - name: AWS configure credentials
