@@ -1,8 +1,8 @@
+## after_install.sh ##
+
 #!/bin/bash
-REPOSITORY=/home/ubuntu/build
 
-cd $REPOSITORY
+cd /home/ubuntu/bluetags
 
-npm install
-
-pm2 start dist
+# zip 파일 풀기
+unzip -o -d /home/ubuntu/bluetags build.zip
