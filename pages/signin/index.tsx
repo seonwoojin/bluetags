@@ -216,6 +216,7 @@ interface LoginResponse {
 
 const WatchList: NextPage = () => {
   const user = useUser();
+  console.log(user);
   const router = useRouter();
   const { data: session } = useSession();
   const [login, { loading, data, error, status }] =
@@ -240,7 +241,7 @@ const WatchList: NextPage = () => {
     login(validForm);
   };
   useEffect(() => {
-    if (user) {
+    if (user.user !== null) {
       router.push("/");
     }
   }, [user]);
