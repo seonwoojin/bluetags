@@ -6,3 +6,5 @@ export NVM_DIR="$HOME/.nvm"
 export HOME="/home/ubuntu/"
 sudo PM2_HOME=/home/ubuntu/.pm2 pm2 list
 pm2 kill
+npm install
+pm2 start npm -- start
