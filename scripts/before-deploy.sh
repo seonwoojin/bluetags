@@ -2,4 +2,5 @@
 
 #!/bin/bash
 
-sudo pm2 kill
+npm install pm2 -g
+pm2 kill
