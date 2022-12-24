@@ -191,7 +191,7 @@ export default function Header() {
           </>
         ) : (
           <Link href={"/signin"}>
-            <UserText>Sign In</UserText>
+            <UserText>회원가입</UserText>
           </Link>
         )}
       </UserContainer>
