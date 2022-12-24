@@ -6,6 +6,6 @@ export NVM_DIR="$HOME/.nvm"
 export HOME="/home/ubuntu/"
 sudo PM2_HOME=/home/ubuntu/.pm2 pm2 list
 pm2 kill
-cd bluetags
+cd /home/ubuntu/bluetags
 npm install
 pm2 start npm -- start
