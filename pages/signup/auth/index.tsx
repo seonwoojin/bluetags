@@ -45,7 +45,7 @@ interface AuthResponse {
   auth?: string;
 }
 
-const WatchList: NextPage = () => {
+const Auth: NextPage = () => {
   const router = useRouter();
   const [auth, { loading, data, error, status }] =
     useMutation<AuthResponse>("/api/users/auth");
@@ -68,4 +68,4 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default Auth;

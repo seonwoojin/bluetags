@@ -1,8 +1,8 @@
 /**
- * @api {get} /users 회원정보 확인
+ * @api {get} /users/check 로그인 되어있는지 확인
  *
  * @apiVersion        1.0.0
- * @apiName UserCheck
+ * @apiName User Login Check
  * @apiGroup Users
  *
  * @apiSuccess {User} User Information of the User.

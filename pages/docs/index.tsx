@@ -12,8 +12,8 @@ const Container = styled.div`
   padding-left: 20rem;
 `;
 
-const WatchList: NextPage = () => {
+const Docs: NextPage = () => {
   return <Container></Container>;
 };
 
-export default WatchList;
+export default Docs;

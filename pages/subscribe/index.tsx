@@ -13,7 +13,7 @@ const Container = styled.div`
   padding-left: 20rem;
 `;
 
-const WatchList: NextPage = () => {
+const Subscribe: NextPage = () => {
   return (
     <Container>
       <Calendar locale="kr" value={new Date()} />
@@ -21,4 +21,4 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default Subscribe;

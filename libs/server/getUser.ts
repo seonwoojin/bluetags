@@ -11,6 +11,5 @@ export default async function getUser(id: string) {
       id: id,
     },
   });
-
   return user || socialUser;
 }

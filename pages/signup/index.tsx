@@ -7,6 +7,8 @@ import useMutation from "./../../libs/client/useMutation";
 import { useRouter } from "next/router";
 import { User } from "@prisma/client";
 import useUser from "@libs/client/useUser";
+import useSWR from "swr";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -196,8 +198,11 @@ interface ErrorResponse {
   confirm_password: string;
 }
 
-const WatchList: NextPage = () => {
-  const user = useUser();
+interface UserResponse {
+  data: User;
+}
+
+const SignUp: NextPage = () => {
   const router = useRouter();
   const [enter, { loading, data, error, status }] = useMutation<
     EnterResponse,
@@ -215,10 +220,12 @@ const WatchList: NextPage = () => {
     enter(validForm);
   };
   useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user]);
+    axios.get("/api/users/check").then((response) => {
+      if (response.data) {
+        router.push("/");
+      }
+    });
+  }, []);
   useEffect(() => {
     if (error) {
       if (error.confirm_password) {
@@ -323,4 +330,4 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default SignUp;

@@ -46,7 +46,7 @@ interface AuthResponse {
   auth?: string;
 }
 
-const WatchList: NextPage = () => {
+const Validate: NextPage = () => {
   const router = useRouter();
   const [auth, { loading, data, error, status }] = useMutation<AuthResponse>(
     "/api/users/sign-up/auth-check"
@@ -57,10 +57,9 @@ const WatchList: NextPage = () => {
     }
   }, [router]);
   useEffect(() => {
-    console.log(status);
-    // if (status === 200) {
-    //   router.push("/");
-    // }
+    if (status === 200) {
+      router.push("/");
+    }
   }, [data, status, router]);
   return (
     <Container>
@@ -72,4 +71,4 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default Validate;

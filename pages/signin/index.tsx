@@ -3,10 +3,13 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 import useUser from "./../../libs/client/useUser";
+import useSWR, { useSWRConfig } from "swr";
+import { User } from "@prisma/client";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -214,9 +217,7 @@ interface LoginResponse {
   auth?: string;
 }
 
-const WatchList: NextPage = () => {
-  const user = useUser();
-  console.log(user);
+const SignIn: NextPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [login, { loading, data, error, status }] =
@@ -241,15 +242,17 @@ const WatchList: NextPage = () => {
     login(validForm);
   };
   useEffect(() => {
-    if (user.user !== null) {
-      router.push("/");
-    }
-  }, [user]);
-  useEffect(() => {
     if (session?.user && !socialLoading) {
       socialLogin(session.user);
     }
   }, [session]);
+  useEffect(() => {
+    axios.get("/api/users/check").then((response) => {
+      if (response.data) {
+        router.push("/");
+      }
+    });
+  }, []);
   useEffect(() => {
     if (socialStatus === 200) {
       router.push("/");
@@ -345,4 +348,4 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default SignIn;
