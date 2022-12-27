@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Calendar from "react-calendar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import WithHead from "@components/WithHead";
 
 interface DataType {
   title: string;
@@ -993,4 +994,10 @@ const CalendarPage: NextPage = () => {
   );
 };
 
-export default CalendarPage;
+export default WithHead(
+  CalendarPage,
+  "Bluetags",
+  "Calendar",
+  "calendar",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

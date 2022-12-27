@@ -52,36 +52,37 @@ const Home: NextPage = () => {
   const user = useUser();
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
   return (
-    <>
-      <Head>
-        <title>home</title>
-      </Head>
-      <Container>
-        <ContextWrapper>
-          <HomeTitle subTitle="Large" title="BlueCard" />
-          <SlideWrapper>
-            {isValidating ? (
-              <SkeletonBlueCardMediumSlider />
-            ) : data ? (
-              <BlueCardMediumSlider data={data.data.bluecards} />
-            ) : null}
-          </SlideWrapper>
-        </ContextWrapper>
-        <ContextWrapper>
-          <HomeTitle subTitle="Horizontal" title="BlueCard" />
-          <SlideWrapper>
-            {data ? (
-              <BlueCardHorizontalSlider data={data.data.bluecards} />
-            ) : null}
-          </SlideWrapper>
-        </ContextWrapper>
-        <ContextWrapper>
-          <HomeTitle subTitle="Small" title="BlueCard" />
-          <BlueCardSmall num={1} />
-        </ContextWrapper>
-      </Container>
-    </>
+    <Container>
+      <ContextWrapper>
+        <HomeTitle subTitle="Large" title="BlueCard" />
+        <SlideWrapper>
+          {isValidating ? (
+            <SkeletonBlueCardMediumSlider />
+          ) : data ? (
+            <BlueCardMediumSlider data={data.data.bluecards} />
+          ) : null}
+        </SlideWrapper>
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Horizontal" title="BlueCard" />
+        <SlideWrapper>
+          {data ? (
+            <BlueCardHorizontalSlider data={data.data.bluecards} />
+          ) : null}
+        </SlideWrapper>
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Small" title="BlueCard" />
+        <BlueCardSmall num={1} />
+      </ContextWrapper>
+    </Container>
   );
 };
 
-export default WithHead(Home, "Bluetags", "", "", "abc");
+export default WithHead(
+  Home,
+  "Bluetags",
+  "",
+  "",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

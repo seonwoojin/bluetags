@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import WithHead from "@components/WithHead";
 
 const Container = styled.div`
   display: flex;
@@ -68,4 +69,10 @@ const Auth: NextPage = () => {
   );
 };
 
-export default Auth;
+export default WithHead(
+  Auth,
+  "Bluetags",
+  "Auth",
+  "signup/auth",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

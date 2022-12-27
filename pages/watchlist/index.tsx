@@ -1,6 +1,7 @@
 import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
 import HomeTitle from "@components/HomeTitle";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
+import WithHead from "@components/WithHead";
 import { NextPage } from "next";
 import styled from "styled-components";
 
@@ -131,4 +132,10 @@ const WatchList: NextPage = () => {
   );
 };
 
-export default WatchList;
+export default WithHead(
+  WatchList,
+  "Bluetags",
+  "WatchList",
+  "watchlist",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

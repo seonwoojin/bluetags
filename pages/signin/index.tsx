@@ -10,6 +10,7 @@ import useUser from "./../../libs/client/useUser";
 import useSWR, { useSWRConfig } from "swr";
 import { User } from "@prisma/client";
 import axios from "axios";
+import WithHead from "@components/WithHead";
 
 const Container = styled.div`
   display: flex;
@@ -348,4 +349,10 @@ const SignIn: NextPage = () => {
   );
 };
 
-export default SignIn;
+export default WithHead(
+  SignIn,
+  "Bluetags",
+  "SignIn",
+  "signin",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

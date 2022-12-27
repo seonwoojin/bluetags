@@ -1,3 +1,4 @@
+import WithHead from "@components/WithHead";
 import { NextPage } from "next";
 import { Calendar } from "react-calendar";
 import styled from "styled-components";
@@ -21,4 +22,10 @@ const Subscribe: NextPage = () => {
   );
 };
 
-export default Subscribe;
+export default WithHead(
+  Subscribe,
+  "Bluetags",
+  "Subscribe",
+  "subscribe",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

@@ -1,3 +1,4 @@
+import WithHead from "@components/WithHead";
 import { NextPage } from "next";
 import styled from "styled-components";
 
@@ -16,4 +17,10 @@ const Docs: NextPage = () => {
   return <Container></Container>;
 };
 
-export default Docs;
+export default WithHead(
+  Docs,
+  "Bluetags",
+  "Docs",
+  "docs",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);

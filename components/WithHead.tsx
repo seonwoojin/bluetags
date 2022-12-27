@@ -22,7 +22,7 @@ const WithHead = (
             content="width=device-width, initial-scale=1, viewport-fit=cover"
           />
           <title>
-            {title} : {pageName}
+            {pageName === "" ? `${title}` : `${title} - ${pageName}`}
           </title>
           <meta name="description" content={description} />
           <meta name="twitter:card" content="summary_large_image" />
@@ -30,12 +30,7 @@ const WithHead = (
           <meta property="og:description" content={description} />
           <meta property="og:url" content={currentUrl} />
           <meta property="og:locale" content="ko_kr" />
-          <meta
-            property="og:image"
-            content={`${domain}/opengraph.png?${(Math.random() * 7).toString(
-              7
-            )}`}
-          />
+          <meta property="og:image" content="/logo.png" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={domain} />
         </Head>

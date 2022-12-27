@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import useUser from "@libs/client/useUser";
+import WithHead from "@components/WithHead";
 
 const Container = styled.div`
   display: flex;
@@ -71,4 +72,10 @@ const Validate: NextPage = () => {
   );
 };
 
-export default Validate;
+export default WithHead(
+  Validate,
+  "Bluetags",
+  "Validate",
+  "signup/validate",
+  "블루태그에서 다양한 NFT 정보를 만나보세요"
+);
