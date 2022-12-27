@@ -6,7 +6,6 @@ import { theme } from "styles/theme";
 import { SWRConfig } from "swr";
 import axios from "axios";
 import { SessionProvider } from "next-auth/react";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -16,6 +16,7 @@ const WithHead = (
       <>
         <Head>
           <link rel="canonical" href={currentUrl} />
+          <link rel="icon" href="/logo.svg" />
           <meta name="format-detection" content="telephone=no" />
           <meta
             name="viewport"
@@ -30,7 +31,7 @@ const WithHead = (
           <meta property="og:description" content={description} />
           <meta property="og:url" content={currentUrl} />
           <meta property="og:locale" content="ko_kr" />
-          <meta property="og:image" content="/logo.png" />
+          <meta property="og:image" content="/ologo.png" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content={domain} />
         </Head>
