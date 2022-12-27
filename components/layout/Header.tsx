@@ -7,6 +7,7 @@ import useMutation from "./../../libs/client/useMutation";
 import { useSWRConfig } from "swr";
 import { useEffect } from "react";
 import { signOut } from "next-auth/react";
+import { breakingPoint } from "constants/breakingPoint";
 
 /** NavBar 전체 div */
 const NavBarWrapper = styled.div`
@@ -21,6 +22,9 @@ const NavBarWrapper = styled.div`
   position: fixed;
   background-color: white;
   z-index: 50;
+  @media ${breakingPoint.device.mobile} {
+    display: none;
+  }
 `;
 
 const SearchForm = styled.form`

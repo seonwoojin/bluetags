@@ -8,6 +8,8 @@ import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
 import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
+import Head from "next/head";
+import WithHead from "@components/WithHead";
 
 const Container = styled.div`
   display: flex;
@@ -50,31 +52,36 @@ const Home: NextPage = () => {
   const user = useUser();
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
   return (
-    <Container>
-      <ContextWrapper>
-        <HomeTitle subTitle="Large" title="BlueCard" />
-        <SlideWrapper>
-          {isValidating ? (
-            <SkeletonBlueCardMediumSlider />
-          ) : data ? (
-            <BlueCardMediumSlider data={data.data.bluecards} />
-          ) : null}
-        </SlideWrapper>
-      </ContextWrapper>
-      <ContextWrapper>
-        <HomeTitle subTitle="Horizontal" title="BlueCard" />
-        <SlideWrapper>
-          {data ? (
-            <BlueCardHorizontalSlider data={data.data.bluecards} />
-          ) : null}
-        </SlideWrapper>
-      </ContextWrapper>
-      <ContextWrapper>
-        <HomeTitle subTitle="Small" title="BlueCard" />
-        <BlueCardSmall num={1} />
-      </ContextWrapper>
-    </Container>
+    <>
+      <Head>
+        <title>home</title>
+      </Head>
+      <Container>
+        <ContextWrapper>
+          <HomeTitle subTitle="Large" title="BlueCard" />
+          <SlideWrapper>
+            {isValidating ? (
+              <SkeletonBlueCardMediumSlider />
+            ) : data ? (
+              <BlueCardMediumSlider data={data.data.bluecards} />
+            ) : null}
+          </SlideWrapper>
+        </ContextWrapper>
+        <ContextWrapper>
+          <HomeTitle subTitle="Horizontal" title="BlueCard" />
+          <SlideWrapper>
+            {data ? (
+              <BlueCardHorizontalSlider data={data.data.bluecards} />
+            ) : null}
+          </SlideWrapper>
+        </ContextWrapper>
+        <ContextWrapper>
+          <HomeTitle subTitle="Small" title="BlueCard" />
+          <BlueCardSmall num={1} />
+        </ContextWrapper>
+      </Container>
+    </>
   );
 };
 
-export default Home;
+export default WithHead(Home, "Bluetags", "", "", "abc");

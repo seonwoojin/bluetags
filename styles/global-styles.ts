@@ -12,6 +12,7 @@ font-size: 62.5%;
 min-width: 320px;
 overflow-x: hidden;
 }
+a { -webkit-tap-highlight-color:transparent;}
 *,
 *::before,
 *::after {
