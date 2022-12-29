@@ -374,7 +374,7 @@ const SignUp: NextPage = () => {
                 />
                 <div>
                   <p>
-                    Creating an account means you're okay with our Terms of
+                    Creating an account means you are okay with our Terms of
                     Service, Privacy Policy, and our default Notification
                     Settings.
                   </p>
