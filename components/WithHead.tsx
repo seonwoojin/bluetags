@@ -16,7 +16,7 @@ const WithHead = (
       <>
         <Head>
           <link rel="canonical" href={currentUrl} />
-          <link rel="icon" href="/logo.svg" />
+          <link rel="icon" href="/favicon.svg" />
           <meta name="format-detection" content="telephone=no" />
           <meta
             name="viewport"
