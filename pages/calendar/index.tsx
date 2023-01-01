@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import WithHead from "@components/WithHead";
+import { breakingPoint } from "constants/breakingPoint";
 
 interface DataType {
   title: string;
@@ -54,7 +55,7 @@ const datas: DataType[] = [
   {
     title:
       " nonumes ex mei, duo ut dicta vidisse mnesarchum, nec an saepe verear. Ea eripuit iracundia mel, an dolorum debitis ponderu",
-    startDate: new Date("2022-12-23 00:00:00"),
+    startDate: new Date("2022-12-21 00:00:00"),
     endDate: new Date("2022-12-23 23:59:59"),
     bluetag: "lang",
     id: "5",
@@ -195,11 +196,20 @@ const datas: DataType[] = [
     bluetag: "event",
     id: "22",
   },
+  {
+    title:
+      "th content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to foe",
+    startDate: new Date("2022-12-22 00:00:00"),
+    endDate: new Date("2022-12-24 23:59:59"),
+    bluetag: "event",
+    id: "23",
+  },
 ];
 
-const Container = styled.div`
+const Container = styled.div<{ max: string }>`
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
@@ -207,13 +217,16 @@ const Container = styled.div`
   height: auto;
   padding-top: 10vh;
   padding-left: 20rem;
+  @media ${breakingPoint.device.mobile} {
+    min-width: 0px;
+  }
   .react-calendar__tile--active,
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
     background-color: none;
   }
   .react-calendar {
-    width: 1000px;
+    width: 1425px;
     height: auto;
     border: none;
     margin-bottom: 50px;
@@ -221,24 +234,11 @@ const Container = styled.div`
   .react-calendar__navigation {
     height: 100px;
     position: relative;
-    svg {
-      width: 2rem;
-      fill: #191f28;
-    }
   }
   .react-calendar__navigation button {
     :disabled {
       background-color: white;
       color: black;
-    }
-    :hover {
-      background-color: white;
-    }
-    :enabled {
-      :hover {
-        background-color: white;
-      }
-      background-color: white;
     }
     :first-child {
       display: none;
@@ -249,44 +249,51 @@ const Container = styled.div`
     :nth-child(2) {
       position: absolute;
       top: 15px;
-      left: 340px;
-      z-index: 40;
+      left: 350px;
     }
     :nth-child(3) {
       position: absolute;
       left: 0;
-      right: 0;
       .react-calendar__navigation__label__labelText {
-        font-size: 4rem;
         font-weight: 600;
-        color: #474c53;
+        font-size: 4rem;
+        .month {
+          font-size: 4rem;
+          font-weight: 400;
+          margin-right: 20px;
+        }
       }
     }
     :nth-child(4) {
       position: absolute;
       top: 15px;
-      left: 620px;
+      left: 400px;
     }
     :not(:nth-child(3)) {
     }
   }
   .react-calendar__viewContainer {
-    width: 1000px;
+    width: 1425px;
+    height: ${(props) => (props.max === "true" ? "1070px" : "950px")};
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #ffffff;
+    border: 1px solid #d1d2d4;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
       rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
   }
+  .react-calendar__month-view {
+    margin-bottom: 40px;
+  }
   .react-calendar__month-view__weekdays {
-    height: 8rem;
-    border: 2px solid #c6c8ce;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    background: #f1f3f8;
+    height: 80px;
     div {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      color: #858990;
+      color: #8c8f94;
     }
   }
   .react-calendar__month-view__weekdays__weekday {
@@ -305,59 +312,53 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     padding: 0px;
-    width: 142.84px;
     height: 120px;
-    background: white;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border: 1px solid #f0f0f0;
     overflow: visible;
-    border-left: 2px solid #c6c8ce;
-    border-bottom: 2px solid #c6c8ce;
     :hover {
       color: black;
-      background: white;
+      background: #f9f9f9;
     }
     :enabled {
       :hover {
         color: black;
-        background: white;
+        background: #f9f9f9;
       }
       color: black;
-      background: white;
+      background: #f9f9f9;
     }
     abbr {
-      margin-right: 5px;
+      margin-left: 10px;
     }
-  }
-
-  .saturday {
-    border-right: 2px solid #c6c8ce;
   }
 
   .react-calendar__month-view__days__day--weekend {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 120px;
-
-    background: rgba(0, 0, 0, 0.1);
+    background: f9f9f9;
     color: red;
     :hover {
       color: red;
-      background: rgba(0, 0, 0, 0.1);
+      background: f9f9f9;
     }
     :enabled {
       :hover {
         color: red;
-        background: rgba(0, 0, 0, 0.1);
+        background: f9f9f9;
       }
       color: red;
-      background: rgba(0, 0, 0, 0.1);
+      background: f9f9f9;
     }
     :focus {
       color: red;
-      background: rgba(0, 0, 0, 0.1);
+      background: f9f9f9;
     }
   }
   .react-calendar__tile--now {
@@ -380,6 +381,26 @@ const Container = styled.div`
         color: rgba(0, 0, 0, 0.4);
       }
     }
+  }
+  .react-calendar__navigation__label {
+    width: 100%;
+  }
+  .react-calendar__navigation__label__labelText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .select-month {
+    width: 100px;
+    height: 38px;
+    margin-left: 20px;
+    border-radius: 4px;
+    border: 1px solid #e3e3e3;
+    color: #1b1b21;
+    font-size: 16px;
+    padding: 0px 15px;
+    background: url("data:image/svg+xml,%3csvg viewBox='0 0 8 6' fill='rgb(27,27,33)' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0.94 0.5L4 3.59042L7.06 0.5L8 1.45142L4 5.5L0 1.45142L0.94 0.5Z'/%3e%3c/svg%3e")
+      no-repeat 90% 50%/12px auto;
   }
 `;
 
@@ -453,11 +474,11 @@ const TodoStartDiv = styled.div<{ leftDays: number; day: number }>`
   min-width: ${(props) =>
     props.leftDays <= props.day
       ? props.leftDays > 1
-        ? `${136 * 2 + 142.84 * (props.leftDays - 1)}px`
+        ? `${183 * 2 + 191.75 * (props.leftDays - 1)}px`
         : props.leftDays === 1
-        ? `${136 * 2}px`
-        : "0px"
-      : `${136 * 2 + 142.84 * (props.day - 1)}px`};
+        ? `${183 * 2}px`
+        : "175px"
+      : `${183 * 2 + 191.75 * (props.day - 1)}px`};
 `;
 
 const BetweenDiv = styled.div`
@@ -558,43 +579,55 @@ const DetailDateToDo = styled.div`
 `;
 
 const LegendContainer = styled.div`
+  position: absolute;
+  bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 350px;
-  height: 500px;
+  width: 1325px;
+  height: 95px;
   margin-left: 10px;
-  border-radius: 20px;
+  margin-bottom: 80px;
+  border-radius: 5px;
   background-color: #f9f9f9;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 20%;
-    font-size: 3rem;
+    width: 355px;
+    height: 65px;
+    font-size: 19px;
     color: #434447;
   }
+`;
+
+const UnitWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
 `;
 
 const UnitContainer = styled.div<{ color: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 80%;
-  min-height: 60px;
+  width: 180px;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 20px;
-  font-size: 2rem;
-  border-radius: 15px;
-  color: #434447;
+  font-size: 14px;
+  border-radius: 54px;
+  color: #191f28;
   background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   svg {
     width: 1.2rem;
     margin-right: 1.5rem;
-    color: #434447;
+    color: #191f28;
     fill: ${(props) => props.color};
   }
   .left {
@@ -615,17 +648,17 @@ const UnitCount = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 50px;
   height: 40%;
   background-color: #f1f2f2;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 `;
 
 const week = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
 
 const CalendarPage: NextPage = () => {
   const router = useRouter();
+  const [maxWeek, setMaxWeek] = useState(false);
+  const [years, setYears] = useState<number[]>([]);
   const [value, setValue] = useState(new Date());
   const [click, setClick] = useState<Date>(new Date());
   const [clickTile, setClickTile] = useState(false);
@@ -635,6 +668,24 @@ const CalendarPage: NextPage = () => {
   const [voting, setVoting] = useState(0);
   const [minting, setMinting] = useState(0);
   const [lang, setLang] = useState(0);
+  const clicked = () => {
+    const date = new Date(
+      new Date(value.setDate(1)).setMonth(value.getMonth() + 1)
+    );
+    setValue(date);
+  };
+  useEffect(() => {
+    for (let i = new Date().getFullYear() + 1; i >= 1990; i--) {
+      setYears((prev) => [...prev, i]);
+    }
+  }, []);
+  useEffect(() => {
+    const tiles = document.getElementsByClassName(
+      "react-calendar__tile"
+    ) as HTMLCollectionOf<HTMLElement>;
+    if (tiles.length > 35) setMaxWeek(true);
+    else setMaxWeek(false);
+  }, [value.getMonth(), value.getFullYear()]);
   useEffect(() => {
     const tiles = document.getElementsByClassName(
       "react-calendar__tile"
@@ -694,10 +745,11 @@ const CalendarPage: NextPage = () => {
     }
   }, [router]);
   return (
-    <Container>
+    <Container max={String(maxWeek)}>
       <Calendar
         calendarType={"US"}
         onClickDay={(date) => {
+          console.log(date);
           if (value.getMonth() === date.getMonth()) {
             const toDos = datas.filter(
               (data) => data.startDate <= date && data.endDate >= date
@@ -708,31 +760,91 @@ const CalendarPage: NextPage = () => {
           }
         }}
         onActiveStartDateChange={(props) => setClick(props.activeStartDate)}
-        nextLabel={
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <path d="M365.3 256l-22.6 22.6-192 192L128 493.3 82.7 448l22.6-22.6L274.7 256 105.4 86.6 82.7 64 128 18.7l22.6 22.6 192 192L365.3 256z" />
-            </svg>
-          </div>
-        }
-        prevLabel={
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <path d="M18.7 256l22.6 22.6 192 192L256 493.3 301.3 448l-22.6-22.6L109.3 256 278.6 86.6 301.3 64 256 18.7 233.4 41.4l-192 192L18.7 256z" />
-            </svg>
-          </div>
-        }
+        nextLabel={<div></div>}
+        prevLabel={<div></div>}
         navigationLabel={({ date, locale }) => {
           return (
-            <div>{`${date.toLocaleString(locale, {
-              year: "numeric",
-            })} . ${date.toLocaleString(locale, { month: "numeric" })}`}</div>
+            <>
+              <div>
+                <span className="month">
+                  {date.toLocaleString(locale, {
+                    month: "long",
+                  })}
+                </span>
+                {date.toLocaleString(locale, { year: "numeric" })}
+              </div>
+              <div>
+                <select
+                  onChange={(e) => {
+                    setClick(
+                      new Date(
+                        new Date(value.setDate(1)).setFullYear(
+                          Number(e.currentTarget.value)
+                        )
+                      )
+                    );
+                    setValue(
+                      new Date(
+                        new Date(value.setDate(1)).setFullYear(
+                          Number(e.currentTarget.value)
+                        )
+                      )
+                    );
+                  }}
+                  value={value.getFullYear()}
+                  className="select-month"
+                  name="year"
+                >
+                  {years.length > 0
+                    ? years.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))
+                    : null}
+                </select>
+                <select
+                  onChange={(e) => {
+                    setClick(
+                      new Date(
+                        new Date(value.setDate(1)).setMonth(
+                          Number(e.currentTarget.value)
+                        )
+                      )
+                    );
+                    setValue(
+                      new Date(
+                        new Date(value.setDate(1)).setMonth(
+                          Number(e.currentTarget.value)
+                        )
+                      )
+                    );
+                  }}
+                  value={value.getMonth()}
+                  className="select-month"
+                  name="month"
+                >
+                  <option value={0}>Jan</option>
+                  <option value={1}>Feb</option>
+                  <option value={2}>Mar</option>
+                  <option value={3}>Apr</option>
+                  <option value={4}>May</option>
+                  <option value={5}>Jun</option>
+                  <option value={6}>Jul</option>
+                  <option value={7}>Aug</option>
+                  <option value={8}>Sep</option>
+                  <option value={9}>Oct</option>
+                  <option value={10}>Nov</option>
+                  <option value={11}>Dec</option>
+                </select>
+              </div>
+            </>
           );
         }}
         minDetail="month"
         locale="en"
-        onChange={setValue}
         value={value}
+        onChange={setValue}
         tileClassName={({ date }) => (date.getDay() === 6 ? "saturday" : null)}
         tileContent={({ date }) => {
           const thisWeekSunday = new Date(date);
@@ -896,6 +1008,8 @@ const CalendarPage: NextPage = () => {
                   )
                 ) : id.includes("empty") ? (
                   <BetweenDiv key={`empty${index}`} />
+                ) : id.includes("possible") && index < 4 ? (
+                  <BetweenDiv key={`possible${index}`} />
                 ) : null
               )}
               {lastTiles.length > 0 ? (
@@ -945,50 +1059,52 @@ const CalendarPage: NextPage = () => {
       ) : null}
       <LegendContainer>
         <h1>Legend</h1>
-        <UnitContainer color={"#64B5FF"}>
-          <div className="left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
-            </svg>
-            Event
-          </div>
-          <div className="right">
-            <UnitCount>{`${event} units`}</UnitCount>
-          </div>
-        </UnitContainer>
-        <UnitContainer color={"#ffa0d3"}>
-          <div className="left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
-            </svg>
-            Voting
-          </div>
-          <div className="right">
-            <UnitCount>{`${voting} units`}</UnitCount>
-          </div>
-        </UnitContainer>
-        <UnitContainer color={"#9dce99"}>
-          <div className="left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
-            </svg>
-            Minting
-          </div>
-          <div className="right">
-            <UnitCount>{`${minting} units`}</UnitCount>
-          </div>
-        </UnitContainer>
-        <UnitContainer color={"#fcc53a"}>
-          <div className="left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
-            </svg>
-            Lang
-          </div>
-          <div className="right">
-            <UnitCount>{`${lang} units`}</UnitCount>
-          </div>
-        </UnitContainer>
+        <UnitWrapper>
+          <UnitContainer color={"#64B5FF"}>
+            <div className="left">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+              </svg>
+              Event
+            </div>
+            <div className="right">
+              <UnitCount>{`${event} units`}</UnitCount>
+            </div>
+          </UnitContainer>
+          <UnitContainer color={"#ffa0d3"}>
+            <div className="left">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+              </svg>
+              Voting
+            </div>
+            <div className="right">
+              <UnitCount>{`${voting} units`}</UnitCount>
+            </div>
+          </UnitContainer>
+          <UnitContainer color={"#9dce99"}>
+            <div className="left">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+              </svg>
+              Minting
+            </div>
+            <div className="right">
+              <UnitCount>{`${minting} units`}</UnitCount>
+            </div>
+          </UnitContainer>
+          <UnitContainer color={"#fcc53a"}>
+            <div className="left">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z" />
+              </svg>
+              Lang
+            </div>
+            <div className="right">
+              <UnitCount>{`${lang} units`}</UnitCount>
+            </div>
+          </UnitContainer>
+        </UnitWrapper>
       </LegendContainer>
     </Container>
   );

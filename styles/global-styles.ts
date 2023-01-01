@@ -3,6 +3,7 @@ import reset from "styled-reset";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-calendar/dist/Calendar.css";
+import { breakingPoint } from "constants/breakingPoint";
 
 export const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -10,6 +11,13 @@ html {
 box-sizing: border-box;
 font-size: 62.5%;
 min-width: 320px;
+overflow-x: hidden;
+@media ${breakingPoint.device.mobile} {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+}
+body {
 overflow-x: hidden;
 }
 a { -webkit-tap-highlight-color:transparent;}
@@ -22,8 +30,8 @@ box-sizing: inherit;
 a { cursor: pointer; text-decoration: none; }
 input[type="datetime-local"]::-webkit-inner-spin-button,
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+  display: none;
+  -webkit-appearance: none;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

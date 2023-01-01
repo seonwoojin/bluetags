@@ -1,3 +1,4 @@
+import { breakingPoint } from "constants/breakingPoint";
 import styled from "styled-components";
 
 const TitleContainer = styled.div`
@@ -6,6 +7,9 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  @media ${breakingPoint.device.mobile} {
+    padding-left: 5vw;
+  }
 `;
 
 const Title = styled.div`

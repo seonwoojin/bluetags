@@ -9,6 +9,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import WithHead from "@components/WithHead";
 import Logo from "@components/Logo";
+import { breakingPoint } from "constants/breakingPoint";
 
 const Container = styled.div`
   display: flex;
@@ -17,6 +18,9 @@ const Container = styled.div`
   width: 100vw;
   min-width: 1500px;
   height: 100vh;
+  @media ${breakingPoint.device.mobile} {
+    min-width: 0px;
+  }
 `;
 
 const InfographicContainer = styled.div`
@@ -70,8 +74,8 @@ const SocialLoginContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  height: 10rem;
+  width: 620px;
+  height: auto;
   margin-bottom: 3rem;
 `;
 
@@ -79,14 +83,15 @@ const SocialLogin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 95%;
-  height: 45%;
-  border-radius: 2.5rem;
-  border: 1px solid black;
-  font-size: 2rem;
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #4f4f4f;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   svg {
-    margin-right: 2rem;
+    margin-left: 1rem;
   }
 `;
 
@@ -307,34 +312,48 @@ const SignIn: NextPage = () => {
               </InputWrapper>
               <ErrorMessage>{error}</ErrorMessage>
             </InputContainer>
-            {/* <SocialLoginContainer>
+            <SocialLoginContainer>
               <SocialLogin onClick={() => signIn("google")}>
                 {session?.user ? (
                   "Logged in"
                 ) : (
                   <>
-                    <svg
-                      style={{ width: "3rem" }}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 488 512"
-                    >
-                      <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-                    </svg>
                     Sign in with google
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 14 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_684_5624)">
+                        <path
+                          d="M13.9935 7.29848C13.9935 6.71146 13.9459 6.28309 13.8428 5.83887H7.13965V8.48837H11.0742C10.995 9.1468 10.5666 10.1384 9.61464 10.8047L9.6013 10.8934L11.7207 12.5353L11.8675 12.55C13.2161 11.3045 13.9935 9.47203 13.9935 7.29848Z"
+                          fill="#4285F4"
+                        />
+                        <path
+                          d="M7.13965 14.2792C9.06727 14.2792 10.6855 13.6445 11.8675 12.5499L9.61464 10.8046C9.01177 11.225 8.20261 11.5186 7.13965 11.5186C5.25167 11.5186 3.64927 10.2732 3.07806 8.55176L2.99434 8.55887L0.790539 10.2644L0.761719 10.3445C1.93575 12.6767 4.3473 14.2792 7.13965 14.2792Z"
+                          fill="#34A853"
+                        />
+                        <path
+                          d="M3.07787 8.55102C2.92715 8.1068 2.83992 7.6308 2.83992 7.13899C2.83992 6.64713 2.92715 6.17119 3.06994 5.72696L3.06595 5.63235L0.834531 3.89941L0.761523 3.93414C0.277648 4.90195 0 5.98875 0 7.13899C0 8.28924 0.277648 9.37598 0.761523 10.3438L3.07787 8.55102Z"
+                          fill="#FBBC05"
+                        />
+                        <path
+                          d="M7.13965 2.76057C8.48026 2.76057 9.38457 3.33966 9.90022 3.82359L11.9151 1.85626C10.6777 0.706016 9.06727 0 7.13965 0C4.3473 0 1.93575 1.6024 0.761719 3.9346L3.07013 5.72742C3.64927 4.00602 5.25167 2.76057 7.13965 2.76057Z"
+                          fill="#EB4335"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_684_5624">
+                          <rect width="14" height="14.3281" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
                   </>
                 )}
               </SocialLogin>
-              <SocialLogin onClick={() => signOut()}>
-                <svg
-                  style={{ width: "2rem" }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                >
-                  <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
-                </svg>
-                Sign in with facebook
-              </SocialLogin>
-            </SocialLoginContainer> */}
+            </SocialLoginContainer>
             <ButtonWrapper>
               <Button login={true}>Login</Button>
             </ButtonWrapper>

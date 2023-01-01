@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import BlueCardMedium from "../bluecard/BlueCardMedium";
 import { BluecardWithProject } from "pages";
+import { breakingPoint } from "constants/breakingPoint";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
@@ -9,6 +10,10 @@ const StyledSlider = styled(Slider)`
     justify-content: space-between;
     padding: 0px 20px;
     align-items: center;
+    @media ${breakingPoint.device.mobile} {
+      justify-content: center;
+      padding: 0px 0px;
+    }
   }
 `;
 
@@ -92,7 +97,7 @@ export default function BlueCardMediumSlider({ data }: Data) {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -101,7 +106,7 @@ export default function BlueCardMediumSlider({ data }: Data) {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
     ],

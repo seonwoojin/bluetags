@@ -2,12 +2,16 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
 import { BluecardWithProject } from "pages";
+import { breakingPoint } from "constants/breakingPoint";
 
 const StyledSlider = styled(Slider)`
   .slick-slide {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media ${breakingPoint.device.mobile} {
+      display: none;
+    }
   }
 `;
 

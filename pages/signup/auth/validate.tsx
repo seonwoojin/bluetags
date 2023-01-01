@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import useUser from "@libs/client/useUser";
 import WithHead from "@components/WithHead";
+import { breakingPoint } from "constants/breakingPoint";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +16,9 @@ const Container = styled.div`
   width: 100vw;
   min-width: 1500px;
   height: 100vh;
+  @media ${breakingPoint.device.mobile} {
+    min-width: 0px;
+  }
 `;
 
 const InfographicContainer = styled.div`

@@ -10,6 +10,7 @@ import { BlueCard, Project } from "@prisma/client";
 import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
 import Head from "next/head";
 import WithHead from "@components/WithHead";
+import { breakingPoint } from "constants/breakingPoint";
 
 const Container = styled.div`
   display: flex;
@@ -20,6 +21,11 @@ const Container = styled.div`
   height: 500vh;
   padding-top: 13rem;
   padding-left: 33rem;
+  @media ${breakingPoint.device.mobile} {
+    min-width: 0px;
+    padding-top: 50px;
+    padding-left: 0px;
+  }
 `;
 
 const ContextWrapper = styled.div`
@@ -35,6 +41,40 @@ const ContextWrapper = styled.div`
 const SlideWrapper = styled.div`
   width: 100%;
   font-size: 4rem;
+`;
+
+const TagBox = styled.div`
+  display: none;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 5vh;
+  padding: 20px 30px;
+  background-color: #f2f8ff;
+  @media ${breakingPoint.device.mobile} {
+    display: inline-block;
+  }
+`;
+
+const BluetagsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+const BlueTag = styled.div<{ color: string; width: string; white: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${(props) => props.width};
+  height: 24px;
+  border-radius: 100px 9px 200px 100px;
+  background-color: ${(props) => props.color};
+  color: ${(props) => (props.white === "true" ? "#0075FF" : "#fafafa")};
+  font-size: 12px;
+  font-weight: 600;
+  border: ${(props) => (props.white === "true" ? "1px solid #0075ff" : null)};
 `;
 
 export interface BluecardWithProject extends BlueCard {
@@ -53,6 +93,30 @@ const Home: NextPage = () => {
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
   return (
     <Container>
+      <TagBox>
+        <BluetagsWrapper>
+          <BlueTag color="#79B7FF" width="100px" white="false">
+            #Bluetag
+          </BlueTag>
+          <BlueTag color="#9495FF" width="100px" white="false">
+            #Bluetag
+          </BlueTag>
+          <BlueTag color="#0075FF" width="138px" white="false">
+            #Bluetag
+          </BlueTag>
+        </BluetagsWrapper>
+        <BluetagsWrapper>
+          <BlueTag color="#3733FF" width="64px" white="false">
+            #Blue
+          </BlueTag>
+          <BlueTag color="#499DFF" width="175px" white="false">
+            #Bluetag
+          </BlueTag>
+          <BlueTag color="#F0F6FF" width="100px" white="true">
+            #Bluetag
+          </BlueTag>
+        </BluetagsWrapper>
+      </TagBox>
       <ContextWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
@@ -63,7 +127,7 @@ const Home: NextPage = () => {
           ) : null}
         </SlideWrapper>
       </ContextWrapper>
-      <ContextWrapper>
+      {/* <ContextWrapper>
         <HomeTitle subTitle="Horizontal" title="BlueCard" />
         <SlideWrapper>
           {data ? (
@@ -74,7 +138,7 @@ const Home: NextPage = () => {
       <ContextWrapper>
         <HomeTitle subTitle="Small" title="BlueCard" />
         <BlueCardSmall num={1} />
-      </ContextWrapper>
+      </ContextWrapper> */}
     </Container>
   );
 };

@@ -2,6 +2,7 @@ import BlueCardHorizontal from "@components/bluecard/BlueCardHorizontal";
 import HomeTitle from "@components/HomeTitle";
 import ProjectCircleSlider from "@components/slider/ProjectCircleSlider";
 import WithHead from "@components/WithHead";
+import { breakingPoint } from "constants/breakingPoint";
 import { NextPage } from "next";
 import styled from "styled-components";
 
@@ -14,6 +15,9 @@ const Container = styled.div`
   height: 500vh;
   padding-top: 6rem;
   padding-left: 20rem;
+  @media ${breakingPoint.device.mobile} {
+    min-width: 0px;
+  }
 `;
 
 const TopWrapper = styled.div`
