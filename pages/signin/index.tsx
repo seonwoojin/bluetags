@@ -19,7 +19,12 @@ const Container = styled.div`
   min-width: 1500px;
   height: 100vh;
   @media ${breakingPoint.device.mobile} {
+    flex-direction: column;
+    justify-content: flex-start;
     min-width: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    overflow-x: hidden;
   }
 `;
 
@@ -39,6 +44,12 @@ const InfographicContainer = styled.div`
     width: 213px;
     height: 44px;
   }
+  @media ${breakingPoint.device.mobile} {
+    width: 70vw;
+    height: 60vw;
+    margin: 30px 0px;
+    border-radius: 20px;
+  }
 `;
 
 const LoginContainer = styled.div`
@@ -46,7 +57,11 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 70%;
-  height: 100%;
+  height: calc(60vh - 70vw);
+  @media ${breakingPoint.device.mobile} {
+    width: 100vw;
+    height: 50vh;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -56,6 +71,11 @@ const FormContainer = styled.div`
   align-items: flex-start;
   width: auto;
   height: 100%;
+  .web {
+    @media ${breakingPoint.device.mobile} {
+      display: none;
+    }
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -67,6 +87,9 @@ const TitleContainer = styled.div`
   margin-bottom: 3rem;
   font-size: 26px;
   color: #1c1b1b;
+  @media ${breakingPoint.device.mobile} {
+    display: none;
+  }
 `;
 
 const SocialLoginContainer = styled.div`
@@ -77,6 +100,9 @@ const SocialLoginContainer = styled.div`
   width: 620px;
   height: auto;
   margin-bottom: 3rem;
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 const SocialLogin = styled.div`
@@ -113,6 +139,13 @@ const InputContainer = styled.div`
   padding: 40px 0px;
   background-color: rgba(0, 117, 255, 0.03);
   border: 1px solid rgba(0, 117, 255, 0.1);
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+    background-color: inherit;
+    border: none;
+    margin-bottom: 20px;
+    padding: 0px 0px;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -121,6 +154,10 @@ const InputWrapper = styled.div`
   align-items: center;
   width: 620px;
   height: 10rem;
+  @media ${breakingPoint.device.mobile} {
+    width: 100%;
+    height: 8rem;
+  }
 `;
 
 const Label = styled.label`
@@ -137,6 +174,10 @@ const Label = styled.label`
     margin-left: 10px;
     font-size: 1.5rem;
     color: red;
+  }
+  @media ${breakingPoint.device.mobile} {
+    font-size: 12px;
+    font-weight: 600;
   }
 `;
 
@@ -180,6 +221,9 @@ const ButtonWrapper = styled.div`
       color: blueviolet;
     }
   }
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 const ErrorMessage = styled.div`
@@ -215,6 +259,12 @@ const LinkBox = styled.div`
   font-weight: 600;
   font-size: 12px;
   text-decoration: underline;
+  a {
+    color: black;
+  }
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 interface LoginForm {
@@ -296,7 +346,7 @@ const SignIn: NextPage = () => {
                     required: "Please enter your email.",
                   })}
                   id="email"
-                  placeholder="Eamil"
+                  placeholder="Email"
                 />
               </InputWrapper>
               <InputWrapper>
@@ -358,9 +408,9 @@ const SignIn: NextPage = () => {
               <Button login={true}>Login</Button>
             </ButtonWrapper>
             <LinkBox>
-              Forgot Account /<Link href={"/signup"}>Password</Link>
+              <Link href={"/signup"}>Forgot your password ?</Link>
             </LinkBox>
-            <ButtonWrapper>
+            <ButtonWrapper className="web">
               <Button login={false}>Sign up</Button>
             </ButtonWrapper>
           </LoginForm>
