@@ -11,6 +11,7 @@ import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCar
 import Head from "next/head";
 import WithHead from "@components/WithHead";
 import { breakingPoint } from "constants/breakingPoint";
+import Image from "next/image";
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const Container = styled.div`
   min-width: 1500px;
   height: 500vh;
   padding-top: 13rem;
-  padding-left: 33rem;
+  padding-left: 30rem;
   @media ${breakingPoint.device.mobile} {
     min-width: 0px;
     padding-top: 50px;
@@ -118,6 +119,25 @@ const Home: NextPage = () => {
         </BluetagsWrapper>
       </TagBox>
       <ContextWrapper>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            height: "300px",
+            marginBottom: "60px",
+          }}
+        >
+          <div style={{ width: "95%", height: "100%", position: "relative" }}>
+            <Image
+              alt="banner"
+              src="/images/banner.png"
+              layout="fill"
+              quality={100}
+              priority={true}
+            ></Image>
+          </div>
+        </div>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
           {isValidating ? (

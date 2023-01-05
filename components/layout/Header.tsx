@@ -19,7 +19,7 @@ const NavBarWrapper = styled.div`
   padding: 0px 80px;
   background-color: inherit;
   position: fixed;
-  background-color: white;
+  background-color: #191f28;
   z-index: 50;
   @media ${breakingPoint.device.mobile} {
     width: 100vw;
@@ -27,6 +27,9 @@ const NavBarWrapper = styled.div`
     left: 0rem;
     padding: 0px 0px;
     position: fixed;
+  }
+  @media screen and (max-width: 1800px) {
+    height: 70px;
   }
 `;
 
@@ -54,11 +57,12 @@ const SearchInput = styled.input`
   padding: 0 2rem;
   font-size: 1.6rem;
   border: none;
-  border-radius: 10px;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background-color: #272c35;
+  border: 1px solid #272c35;
+  color: white;
   :focus {
-    border: 2px solid rgba(0, 0, 0, 0.8);
+    /* border: 2px solid rgba(0, 0, 0, 0.8); */
   }
   @media ${breakingPoint.device.mobile} {
     display: none;
@@ -96,9 +100,9 @@ const UserText = styled.div`
   margin-left: 17px;
   font-size: 2rem;
   cursor: pointer;
-  color: black;
+  color: white;
   a {
-    color: black;
+    color: white;
   }
   @media ${breakingPoint.device.mobile} {
     display: none;
@@ -121,7 +125,7 @@ const UserTextMobile = styled.div`
 const UserProfile = styled.div<{ profile: string }>`
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 50%;
   background: url(${(props) => props.profile});
   background-position: center center;
   background-size: cover;
@@ -201,7 +205,7 @@ export default function Header() {
           >
             <path
               d="M13.5 12H12.71L12.43 11.73C13.0549 11.0039 13.5117 10.1487 13.7675 9.22559C14.0234 8.30243 14.072 7.33413 13.91 6.38998C13.44 3.60998 11.12 1.38997 8.31997 1.04997C7.33559 0.925441 6.33576 1.02775 5.397 1.34906C4.45824 1.67038 3.60542 2.20219 2.90381 2.90381C2.20219 3.60542 1.67038 4.45824 1.34906 5.397C1.02775 6.33576 0.925441 7.33559 1.04997 8.31997C1.38997 11.12 3.60998 13.44 6.38998 13.91C7.33413 14.072 8.30243 14.0234 9.22559 13.7675C10.1487 13.5117 11.0039 13.0549 11.73 12.43L12 12.71V13.5L16.25 17.75C16.66 18.16 17.33 18.16 17.74 17.75C18.15 17.34 18.15 16.67 17.74 16.26L13.5 12ZM7.49997 12C5.00997 12 2.99997 9.98997 2.99997 7.49997C2.99997 5.00997 5.00997 2.99997 7.49997 2.99997C9.98997 2.99997 12 5.00997 12 7.49997C12 9.98997 9.98997 12 7.49997 12Z"
-              fill="#BABCBF"
+              fill="#ffffff"
             />
           </svg>
         </SearchButton>
@@ -250,14 +254,19 @@ export default function Header() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect width="40" height="40" rx="8" fill="#DDDDDD" />
+                  <rect width="40" height="40" rx="20" fill="#DDDDDD" />
                 </svg>
               ) : (
                 <UserProfile profile={user.user.profile} />
               )}
             </UserText>
             <UserText>{user.user?.name}</UserText>
-            <UserText>
+            <UserText
+              onClick={() => {
+                signOut();
+                logOut({});
+              }}
+            >
               <svg
                 width="24"
                 height="24"
@@ -267,11 +276,11 @@ export default function Header() {
               >
                 <path
                   d="M17.9202 8.17969H11.6902H6.08024C5.12024 8.17969 4.64024 9.33969 5.32024 10.0197L10.5002 15.1997C11.3302 16.0297 12.6802 16.0297 13.5102 15.1997L15.4802 13.2297L18.6902 10.0197C19.3602 9.33969 18.8802 8.17969 17.9202 8.17969Z"
-                  fill="#3A6FF8"
+                  fill="#ffffff"
                 />
               </svg>
             </UserText>
-            {user.user.isSocial ? (
+            {/* {user.user.isSocial ? (
               <UserText
                 onClick={() => {
                   signOut();
@@ -288,7 +297,7 @@ export default function Header() {
               >
                 Sign Out
               </UserText>
-            )}
+            )} */}
           </>
         ) : (
           <>
