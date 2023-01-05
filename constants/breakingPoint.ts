@@ -7,7 +7,7 @@ export const breakingPoint = {
     desktop: "1536px",
   },
   device: {
-    mobile: `screen and (max-width: 810px)`,
+    mobile: `screen and (max-width: 1024px)`,
     tablet: `screen and (max-width: 1200px)`,
     laptop: `screen and (max-width: 1024px)`,
   },

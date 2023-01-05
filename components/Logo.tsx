@@ -1,12 +1,16 @@
 interface Props {
   color?: string;
+  width?: string;
+  height?: string;
+  className?: string;
 }
 
-export default function Logo({ color }: Props) {
+export default function Logo({ color, width, height, className }: Props) {
   return (
     <svg
-      width="2553"
-      height="533"
+      className={className ? className : ""}
+      width={width ? 120 : "2553"}
+      height={height ? 20 : "533"}
       viewBox="0 0 2553 533"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

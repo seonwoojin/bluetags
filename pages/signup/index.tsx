@@ -19,7 +19,12 @@ const Container = styled.div`
   min-width: 1500px;
   height: 100vh;
   @media ${breakingPoint.device.mobile} {
+    flex-direction: column;
+    justify-content: flex-start;
     min-width: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    overflow-x: hidden;
   }
 `;
 
@@ -39,6 +44,9 @@ const InfographicContainer = styled.div`
     width: 213px;
     height: 44px;
   }
+  @media ${breakingPoint.device.mobile} {
+    display: none;
+  }
 `;
 
 const LoginContainer = styled.div`
@@ -47,6 +55,21 @@ const LoginContainer = styled.div`
   align-items: center;
   width: 70%;
   height: 100%;
+  .mobile {
+    display: none;
+  }
+  @media ${breakingPoint.device.mobile} {
+    flex-direction: column;
+    width: 100vw;
+    height: auto;
+    .mobile {
+      display: flex;
+      width: 100vw;
+      margin-top: 5vh;
+      margin-bottom: 3vh;
+      margin-left: 8vw;
+    }
+  }
 `;
 
 const FormContainer = styled.div`
@@ -56,6 +79,9 @@ const FormContainer = styled.div`
   align-items: flex-start;
   width: auto;
   height: 100%;
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -67,6 +93,9 @@ const TitleContainer = styled.div`
   margin-bottom: 3rem;
   font-size: 26px;
   color: #1c1b1b;
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 const Form = styled.form`
@@ -87,6 +116,13 @@ const InputContainer = styled.div`
   padding: 40px 0px;
   background-color: rgba(0, 117, 255, 0.03);
   border: 1px solid rgba(0, 117, 255, 0.1);
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+    background-color: inherit;
+    border: none;
+    margin-bottom: 20px;
+    padding: 0px 0px;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -95,6 +131,10 @@ const InputWrapper = styled.div`
   align-items: center;
   width: 620px;
   height: 10rem;
+  @media ${breakingPoint.device.mobile} {
+    width: 100%;
+    height: 8rem;
+  }
 `;
 
 const Label = styled.label`
@@ -112,6 +152,10 @@ const Label = styled.label`
     font-size: 1.5rem;
     color: red;
   }
+  @media ${breakingPoint.device.mobile} {
+    font-size: 12px;
+    font-weight: 600;
+  }
 `;
 
 const Input = styled.input`
@@ -125,6 +169,19 @@ const Input = styled.input`
   font-size: 16px;
 `;
 
+const CheckBoxTitle = styled.div`
+  display: none;
+  width: 85vw;
+  height: auto;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #4f4f4f;
+  @media ${breakingPoint.device.mobile} {
+    display: flex;
+  }
+`;
+
 const CheckBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -133,6 +190,9 @@ const CheckBoxContainer = styled.div`
   width: auto;
   margin-bottom: 50px;
   padding-left: 100px;
+  @media ${breakingPoint.device.mobile} {
+    padding-left: 0px;
+  }
 `;
 
 const CheckBoxWrapper = styled.div`
@@ -160,6 +220,29 @@ const CheckBoxWrapper = styled.div`
       color: blue;
       cursor: pointer;
     }
+  }
+  @media ${breakingPoint.device.mobile} {
+    display: none;
+  }
+`;
+
+const CheckBoxMobile = styled.div<{ select: string }>`
+  display: none;
+  @media ${breakingPoint.device.mobile} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85vw;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 0px 10vw;
+    background-color: ${(props) =>
+      props.select === "true" ? "#4f4f4f" : "inherit"};
+    color: ${(props) => (props.select === "true" ? "#ffffff" : "#4f4f4f")};
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid #4f4f4f;
   }
 `;
 
@@ -190,6 +273,9 @@ const ButtonWrapper = styled.div`
       margin-left: 10px;
       color: blueviolet;
     }
+  }
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
   }
 `;
 
@@ -239,6 +325,12 @@ const SignUp: NextPage = () => {
   const router = useRouter();
   const [checkBox1, setCheckBox1] = useState(false);
   const [checkBox2, setCheckBox2] = useState(false);
+  const [checkBoxMobile, setCheckBoxMobile] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [checkBoxError, setCheckBoxError] = useState("");
   const [enter, { loading, data, error, status }] = useMutation<
     EnterResponse,
@@ -251,6 +343,17 @@ const SignUp: NextPage = () => {
     formState: { errors },
     setError,
   } = useForm<EnterForm>();
+  const onClickTerm = (termIndex: number) => {
+    const array: boolean[] = [];
+    checkBoxMobile.map((bool, index) => {
+      if (index !== termIndex) {
+        array.push(bool);
+      } else {
+        array.push(!bool);
+      }
+    });
+    setCheckBoxMobile((prev) => [...array]);
+  };
   const onValid = (validForm: EnterForm) => {
     if (!checkBox1 || !checkBox2) {
       setCheckBoxError("Please check");
@@ -299,6 +402,9 @@ const SignUp: NextPage = () => {
         </Link>
       </InfographicContainer>
       <LoginContainer>
+        <div className="mobile">
+          <Logo width="244" height="40" />
+        </div>
         <FormContainer>
           <TitleContainer>Sign up</TitleContainer>
           <Form onSubmit={handleSubmit(onValid)}>
@@ -384,6 +490,110 @@ const SignUp: NextPage = () => {
                   </p>
                 </div>
               </CheckBoxWrapper>
+              <CheckBoxTitle>
+                Terms of collection of non-member information
+              </CheckBoxTitle>
+              <CheckBoxMobile
+                onClick={() => onClickTerm(0)}
+                select={String(checkBoxMobile[0])}
+              >
+                <span>Option A agreement</span>
+                <span>
+                  {checkBoxMobile[0] ? (
+                    <svg
+                      width="24"
+                      height="14"
+                      viewBox="0 0 24 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.8351 1.41L16.4333 0L10.1299 6.34L11.5318 7.75L17.8351 1.41ZM22.0506 0L11.5318 10.58L7.37594 6.41L5.97409 7.82L11.5318 13.41L23.4624 1.41L22.0506 0ZM0.346802 7.82L5.9045 13.41L7.30635 12L1.7586 6.41L0.346802 7.82Z"
+                        fill="white"
+                      />
+                    </svg>
+                  ) : (
+                    <span
+                      onClick={() => router.push(`/signup?agreement=0`)}
+                    >{`(see details)`}</span>
+                  )}
+                </span>
+              </CheckBoxMobile>
+              <CheckBoxMobile
+                onClick={() => onClickTerm(1)}
+                select={String(checkBoxMobile[1])}
+              >
+                <span>Option A agreement</span>
+                <span>
+                  {" "}
+                  {checkBoxMobile[1] ? (
+                    <svg
+                      width="24"
+                      height="14"
+                      viewBox="0 0 24 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.8351 1.41L16.4333 0L10.1299 6.34L11.5318 7.75L17.8351 1.41ZM22.0506 0L11.5318 10.58L7.37594 6.41L5.97409 7.82L11.5318 13.41L23.4624 1.41L22.0506 0ZM0.346802 7.82L5.9045 13.41L7.30635 12L1.7586 6.41L0.346802 7.82Z"
+                        fill="white"
+                      />
+                    </svg>
+                  ) : (
+                      <span style={{ width:"100px", }}
+                      onClick={() => router.push(`/signup?agreement=1`)}
+                    >{`(see details)`}</span>
+                  )}
+                </span>
+              </CheckBoxMobile>
+              <CheckBoxMobile
+                onClick={() => onClickTerm(2)}
+                select={String(checkBoxMobile[2])}
+              >
+                <span>Option A agreement</span>
+                <span>
+                  {checkBoxMobile[2] ? (
+                    <svg
+                      width="24"
+                      height="14"
+                      viewBox="0 0 24 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.8351 1.41L16.4333 0L10.1299 6.34L11.5318 7.75L17.8351 1.41ZM22.0506 0L11.5318 10.58L7.37594 6.41L5.97409 7.82L11.5318 13.41L23.4624 1.41L22.0506 0ZM0.346802 7.82L5.9045 13.41L7.30635 12L1.7586 6.41L0.346802 7.82Z"
+                        fill="white"
+                      />
+                    </svg>
+                  ) : (
+                    `(see details)`
+                  )}
+                </span>
+              </CheckBoxMobile>
+              <CheckBoxMobile
+                onClick={() => onClickTerm(3)}
+                select={String(checkBoxMobile[3])}
+              >
+                <span>Option A agreement</span>
+                <span>
+                  {checkBoxMobile[3] ? (
+                    <svg
+                      width="24"
+                      height="14"
+                      viewBox="0 0 24 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.8351 1.41L16.4333 0L10.1299 6.34L11.5318 7.75L17.8351 1.41ZM22.0506 0L11.5318 10.58L7.37594 6.41L5.97409 7.82L11.5318 13.41L23.4624 1.41L22.0506 0ZM0.346802 7.82L5.9045 13.41L7.30635 12L1.7586 6.41L0.346802 7.82Z"
+                        fill="white"
+                      />
+                    </svg>
+                  ) : (
+                    `(see details)`
+                  )}
+                </span>
+              </CheckBoxMobile>
               <CheckBoxError>{checkBoxError}</CheckBoxError>
             </CheckBoxContainer>
             <ButtonWrapper>

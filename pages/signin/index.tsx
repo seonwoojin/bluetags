@@ -46,7 +46,8 @@ const InfographicContainer = styled.div`
   }
   @media ${breakingPoint.device.mobile} {
     width: 70vw;
-    height: 60vw;
+    height: 35vh;
+    min-height: 280px;
     margin: 30px 0px;
     border-radius: 20px;
   }
@@ -57,10 +58,10 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 70%;
-  height: calc(60vh - 70vw);
+  height: calc(100vh - 60vw);
   @media ${breakingPoint.device.mobile} {
     width: 100vw;
-    height: 50vh;
+    height: auto;
   }
 `;
 
@@ -262,8 +263,18 @@ const LinkBox = styled.div`
   a {
     color: black;
   }
+  .mobile {
+    display: none;
+  }
   @media ${breakingPoint.device.mobile} {
+    justify-content: space-between;
     width: 85vw;
+    .mobile {
+      display: block;
+      color: #3733ff;
+      font-size: 16px;
+      text-decoration: none;
+    }
   }
 `;
 
@@ -376,7 +387,7 @@ const SignIn: NextPage = () => {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_684_5624)">
+                      <g clipPath="url(#clip0_684_5624)">
                         <path
                           d="M13.9935 7.29848C13.9935 6.71146 13.9459 6.28309 13.8428 5.83887H7.13965V8.48837H11.0742C10.995 9.1468 10.5666 10.1384 9.61464 10.8047L9.6013 10.8934L11.7207 12.5353L11.8675 12.55C13.2161 11.3045 13.9935 9.47203 13.9935 7.29848Z"
                           fill="#4285F4"
@@ -408,6 +419,9 @@ const SignIn: NextPage = () => {
               <Button login={true}>Login</Button>
             </ButtonWrapper>
             <LinkBox>
+              <Link className="mobile" href={"/signup"}>
+                Sign up +
+              </Link>
               <Link href={"/signup"}>Forgot your password ?</Link>
             </LinkBox>
             <ButtonWrapper className="web">
