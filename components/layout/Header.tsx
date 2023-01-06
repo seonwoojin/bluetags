@@ -14,7 +14,7 @@ const NavBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: calc(100vw - 27rem);
-  height: 90px;
+  height: 70px;
   left: 27rem;
   padding: 0px 80px;
   background-color: inherit;
@@ -27,9 +27,7 @@ const NavBarWrapper = styled.div`
     left: 0rem;
     padding: 0px 0px;
     position: fixed;
-  }
-  @media screen and (max-width: 1800px) {
-    height: 70px;
+    background-color: inherit;
   }
 `;
 
