@@ -1,26 +1,27 @@
 import styled from "styled-components";
 import { BluecardWithProject } from "pages";
+import BlueTag from "@components/Bluetag";
 
 const BlueCardContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  height: 500px;
-  border-radius: 10px;
+  width: 336px;
+  height: 480px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   margin-bottom: 30px;
+  font-family: "Inter";
 `;
 
 const BlueCardBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 100%;
   height: 180px;
   overflow: hidden;
   background-image: url("https://cdn.pixabay.com/photo/2020/04/11/08/26/lake-5029360_960_720.jpg");
@@ -48,6 +49,7 @@ const BlueCardText = styled.div`
 
 const TitleContainer = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   height: auto;
   margin-bottom: 20px;
@@ -58,9 +60,10 @@ const ProjectLogo = styled.div<{ url: string }>`
   height: 45px;
   margin-right: 10px;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   background-color: black;
   background-image: url(${(props) => props.url});
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-size: cover;
   background-position: center center;
 `;
@@ -68,18 +71,17 @@ const ProjectLogo = styled.div<{ url: string }>`
 const ProjectTitle = styled.div`
   display: flex;
   width: auto;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 400;
 `;
 
 const PostTitle = styled.div`
   display: -webkit-box;
   align-items: center;
-  height: 40px;
+  height: 33px;
   width: 230px;
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
@@ -89,7 +91,7 @@ const PostTitle = styled.div`
 const PostBlueTags = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 300px;
   height: 20%;
   font-size: 1.5rem;
   opacity: 0.4;
@@ -115,7 +117,7 @@ const PostContext = styled.div`
   max-height: 70px;
   margin-bottom: 10px;
   padding-top: 10px;
-  font-size: 1.3rem;
+  font-size: 12px;
   font-weight: 500;
   line-height: 2rem;
   -webkit-line-clamp: 3;
@@ -156,22 +158,13 @@ export default function BlueCardMedium({ data }: SliderProps) {
       <BlueCardText>
         <TitleContainer>
           <ProjectLogo url={data.project.logoUrl} />
-          <PostTitle>{data.title}</PostTitle>
+          <div>
+            <PostTitle>{data.title}</PostTitle>
+            {/* <ProjectTitle>{`${new Date(
+              data.createdAt
+            ).toDateString()}`}</ProjectTitle> */}
+          </div>
         </TitleContainer>
-        <ProjectTitle>{`${data.project.title} | ${new Date(
-          data.createdAt
-        ).toDateString()}`}</ProjectTitle>
-        <PostBlueTags>
-          {data.bluetags.map((word, index) =>
-            index === 0
-              ? word.startsWith("#")
-                ? word
-                : `#${word}`
-              : word.startsWith("#")
-              ? ` ${word}`
-              : ` #${word}`
-          )}
-        </PostBlueTags>
       </BlueCardText>
       <PostContext>{data.description}</PostContext>
       <PostDate>
@@ -194,12 +187,31 @@ export default function BlueCardMedium({ data }: SliderProps) {
           </svg>
         )}
       </PostDate>
-      <Button>
+      <PostBlueTags>
+        {data.bluetags.map((word, index) =>
+          word.startsWith("#") ? (
+            <BlueTag
+              color="#3733FF"
+              width="64px"
+              isWhite="false"
+              text={`${word}`}
+            />
+          ) : (
+            <BlueTag
+              color="#3733FF"
+              width="64px"
+              isWhite="false"
+              text={`#${word}`}
+            />
+          )
+        )}
+      </PostBlueTags>
+      {/* <Button>
         Add on calendar
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path d="M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192z" />
         </svg>
-      </Button>
+      </Button> */}
     </BlueCardContainer>
   );
 }

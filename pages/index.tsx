@@ -2,16 +2,14 @@ import HomeTitle from "@components/HomeTitle";
 import BlueCardMediumSlider from "@components/slider/BlueCardMediumSlider";
 import { NextPage } from "next";
 import styled from "styled-components";
-import BlueCardHorizontalSlider from "@components/slider/BlueCardHorizontalSlider";
-import BlueCardSmall from "@components/bluecard/BlueCardSmall";
 import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
 import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
-import Head from "next/head";
 import WithHead from "@components/WithHead";
 import { breakingPoint } from "constants/breakingPoint";
 import Image from "next/image";
+import BlueTag from "@components/Bluetag";
 
 const Container = styled.div`
   display: flex;
@@ -116,26 +114,6 @@ const BluetagsWrapper = styled.div`
   }
 `;
 
-const BlueTag = styled.div<{ color: string; width: string; white: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${(props) => props.width};
-  height: 24px;
-  margin-right: 10px;
-  border-radius: 100px 9px 200px 100px;
-  background-color: ${(props) => props.color};
-  color: ${(props) => (props.white === "true" ? "#0075FF" : "#fafafa")};
-  font-size: 12px;
-  font-weight: 600;
-  border: ${(props) => (props.white === "true" ? "1px solid #0075ff" : null)};
-  box-shadow: 0px 4px 20px rgba(92, 128, 255, 0.1);
-  @media ${breakingPoint.device.mobile} {
-    justify-content: space-evenly;
-    margin-right: 0px;
-  }
-`;
-
 export interface BluecardWithProject extends BlueCard {
   project: Project;
 }
@@ -156,64 +134,112 @@ const Home: NextPage = () => {
         <TagBoxName>Bluetags Filtering</TagBoxName>
         <TagBox>
           <BluetagsWrapper className="mobile">
-            <BlueTag color="#79B7FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#9495FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#0075FF" width="138px" white="false">
-              #Bluetag
-            </BlueTag>
+            <BlueTag
+              color="#79B7FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#9495FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#0075FF"
+              width="138px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
           </BluetagsWrapper>
           <BluetagsWrapper className="mobile">
-            <BlueTag color="#3733FF" width="64px" white="false">
-              #Blue
-            </BlueTag>
-            <BlueTag color="#499DFF" width="175px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#F0F6FF" width="100px" white="true">
-              #Bluetag
-            </BlueTag>
+            <BlueTag
+              color="#3733FF"
+              width="64px"
+              isWhite="false"
+              text="#Blue"
+            ></BlueTag>
+            <BlueTag
+              color="#499DFF"
+              width="175px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#F0F6FF"
+              width="100px"
+              isWhite="true"
+              text="#Bluetag"
+            ></BlueTag>
           </BluetagsWrapper>
           <BluetagsWrapper className="web">
-            <BlueTag color="#79B7FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#9495FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#0075FF" width="138px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#3733FF" width="64px" white="false">
-              #Blue
-            </BlueTag>
-            <BlueTag color="#499DFF" width="175px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#F0F6FF" width="100px" white="true">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#79B7FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#9495FF" width="100px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#0075FF" width="138px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#3733FF" width="64px" white="false">
-              #Blue
-            </BlueTag>
-            <BlueTag color="#499DFF" width="175px" white="false">
-              #Bluetag
-            </BlueTag>
-            <BlueTag color="#F0F6FF" width="100px" white="true">
-              #Bluetag
-            </BlueTag>
+            <BlueTag
+              color="#79B7FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#9495FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#0075FF"
+              width="138px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#3733FF"
+              width="64px"
+              isWhite="false"
+              text="#Blue"
+            ></BlueTag>
+            <BlueTag
+              color="#499DFF"
+              width="175px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#F0F6FF"
+              width="100px"
+              isWhite="true"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#79B7FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#9495FF"
+              width="100px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#0075FF"
+              width="138px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
+            <BlueTag
+              color="#3733FF"
+              width="64px"
+              isWhite="false"
+              text="#Blue"
+            ></BlueTag>
+            <BlueTag
+              color="#499DFF"
+              width="175px"
+              isWhite="false"
+              text="#Bluetag"
+            ></BlueTag>
           </BluetagsWrapper>
         </TagBox>
         <BannerWrapper>

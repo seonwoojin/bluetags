@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-calendar/dist/Calendar.css";
 import { breakingPoint } from "constants/breakingPoint";
-
 export const GlobalStyle = createGlobalStyle`
 ${reset}
 html {

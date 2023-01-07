@@ -5,6 +5,7 @@ import { GlobalStyle } from "styles/global-styles";
 import { theme } from "styles/theme";
 import { SWRConfig } from "swr";
 import axios from "axios";
+import "../styles/index.css";
 import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps }: AppProps) {

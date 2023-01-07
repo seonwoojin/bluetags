@@ -52,7 +52,7 @@ export default function BlueCardMediumSlider({ data }: Data) {
     dots: true,
     infinite: true,
     speed: 900,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     slidesToShow: 5,
     slidesToScroll: 5,
