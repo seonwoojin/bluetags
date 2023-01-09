@@ -24,10 +24,7 @@ const BlueCardContainer = styled.div`
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   cursor: pointer;
   margin-bottom: 30px;
-  .animationBar {
-    background-size: 100%;
-    animation: loading 1.5s infinite ease-in-out;
-  }
+  animation: loading 1.5s infinite ease-in-out;
 `;
 
 const BlueCardBackGround = styled.div`
@@ -142,14 +139,6 @@ const BlueTags = styled.div<{ width: string }>`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const Wrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-`;
-
 export default function SkeletonBlueCardMedium() {
   return (
     <BlueCardContainer>
@@ -165,7 +154,6 @@ export default function SkeletonBlueCardMedium() {
         <BlueTags width="100px"></BlueTags>
         <BlueTags width="150px"></BlueTags>
       </PostBlueTags>
-      <Wrapper className="animationBar" />
     </BlueCardContainer>
   );
 }

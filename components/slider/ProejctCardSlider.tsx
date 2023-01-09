@@ -18,7 +18,7 @@ const StyledSlider = styled(Slider)`
     display: flex;
     justify-content: center;
     padding: 0px 20px;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     @media ${breakingPoint.device.mobile} {
       justify-content: center;

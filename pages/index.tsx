@@ -12,13 +12,14 @@ import BlueTag from "@components/Bluetag";
 import SkeletonBlueCardMedium from "@components/skeleton/SkeletonBlueCardMedium";
 import PrjectCard from "@components/project/ProjectCard";
 import ProjectCardSlider from "@components/slider/ProejctCardSlider";
+import SkeletonProjectCard from "@components/skeleton/SkeletonProjectCard";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 500vh;
+  height: auto;
   padding-top: 13rem;
   padding-left: 27rem;
   @media ${breakingPoint.device.mobile} {
@@ -266,6 +267,18 @@ const Home: NextPage = () => {
         <HomeTitle subTitle="Large" title="Project" />
         <SlideWrapper>
           <ProjectCardSlider />
+        </SlideWrapper>
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Large" title="News" />
+        <SlideWrapper>
+          <BlueCardMediumSlider data={data?.data.bluecards} />
+        </SlideWrapper>
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Large" title="History" />
+        <SlideWrapper>
+          <BlueCardMediumSlider data={data?.data.bluecards} />
         </SlideWrapper>
       </ContextWrapper>
       {/* <ContextWrapper>
