@@ -100,6 +100,7 @@ const PostBlueTags = styled.div`
 
 const PostDate = styled.div`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   width: 280px;
   height: auto;
