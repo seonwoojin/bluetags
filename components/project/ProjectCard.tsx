@@ -12,6 +12,11 @@ const Project = styled.div`
   border: 1px solid rgba(25, 31, 40, 0.1);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  @media screen and (max-width: 500px) {
+    max-width: 435px;
+    min-width: 350px;
+    width: 90vw;
+  }
 `;
 
 const ProjectLogo = styled.div`
@@ -19,6 +24,10 @@ const ProjectLogo = styled.div`
   height: 40px;
   background-color: black;
   border-radius: 6px;
+  @media screen and (max-width: 500px) {
+    width: 8vw;
+    height: 8vw;
+  }
 `;
 
 const ProjectContent = styled.div`
@@ -50,7 +59,9 @@ const ProjectTitle = styled.div`
       margin-left: 10px;
       font-style: normal;
       font-weight: 500;
-      font-size: 12px;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 10px;
     }
   }
   svg {
@@ -68,6 +79,9 @@ const ProjectDescription = styled.div`
   line-height: 12px;
   color: #191f28;
   opacity: 0.5;
+  @media screen and (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const ProjectChart = styled.div`
