@@ -10,6 +10,8 @@ import { breakingPoint } from "constants/breakingPoint";
 import Image from "next/image";
 import BlueTag from "@components/Bluetag";
 import SkeletonBlueCardMedium from "@components/skeleton/SkeletonBlueCardMedium";
+import PrjectCard from "@components/project/ProjectCard";
+import ProjectCardSlider from "@components/slider/ProejctCardSlider";
 
 const Container = styled.div`
   display: flex;
@@ -133,131 +135,137 @@ const Home: NextPage = () => {
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
   return (
     <Container>
+      <TagBoxName>Bluetags Filtering</TagBoxName>
+      <TagBox>
+        <BluetagsWrapper className="mobile">
+          <BlueTag
+            color="#79B7FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#9495FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#0075FF"
+            width="138px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+        </BluetagsWrapper>
+        <BluetagsWrapper className="mobile">
+          <BlueTag
+            color="#3733FF"
+            width="64px"
+            isWhite="false"
+            text="#Blue"
+          ></BlueTag>
+          <BlueTag
+            color="#499DFF"
+            width="175px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#F0F6FF"
+            width="100px"
+            isWhite="true"
+            text="#Bluetag"
+          ></BlueTag>
+        </BluetagsWrapper>
+        <BluetagsWrapper className="web">
+          <BlueTag
+            color="#79B7FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#9495FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#0075FF"
+            width="138px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#3733FF"
+            width="64px"
+            isWhite="false"
+            text="#Blue"
+          ></BlueTag>
+          <BlueTag
+            color="#499DFF"
+            width="175px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#F0F6FF"
+            width="100px"
+            isWhite="true"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#79B7FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#9495FF"
+            width="100px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#0075FF"
+            width="138px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+          <BlueTag
+            color="#3733FF"
+            width="64px"
+            isWhite="false"
+            text="#Blue"
+          ></BlueTag>
+          <BlueTag
+            color="#499DFF"
+            width="175px"
+            isWhite="false"
+            text="#Bluetag"
+          ></BlueTag>
+        </BluetagsWrapper>
+      </TagBox>
+      <BannerWrapper>
+        <p>Inspiring NFT experience</p>
+        <p>Bluetags_</p>
+        <Image
+          alt="banner"
+          src="/images/banner.png"
+          layout="fill"
+          priority={true}
+        ></Image>
+      </BannerWrapper>
       <ContextWrapper>
-        <TagBoxName>Bluetags Filtering</TagBoxName>
-        <TagBox>
-          <BluetagsWrapper className="mobile">
-            <BlueTag
-              color="#79B7FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#9495FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#0075FF"
-              width="138px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-          </BluetagsWrapper>
-          <BluetagsWrapper className="mobile">
-            <BlueTag
-              color="#3733FF"
-              width="64px"
-              isWhite="false"
-              text="#Blue"
-            ></BlueTag>
-            <BlueTag
-              color="#499DFF"
-              width="175px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#F0F6FF"
-              width="100px"
-              isWhite="true"
-              text="#Bluetag"
-            ></BlueTag>
-          </BluetagsWrapper>
-          <BluetagsWrapper className="web">
-            <BlueTag
-              color="#79B7FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#9495FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#0075FF"
-              width="138px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#3733FF"
-              width="64px"
-              isWhite="false"
-              text="#Blue"
-            ></BlueTag>
-            <BlueTag
-              color="#499DFF"
-              width="175px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#F0F6FF"
-              width="100px"
-              isWhite="true"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#79B7FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#9495FF"
-              width="100px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#0075FF"
-              width="138px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-            <BlueTag
-              color="#3733FF"
-              width="64px"
-              isWhite="false"
-              text="#Blue"
-            ></BlueTag>
-            <BlueTag
-              color="#499DFF"
-              width="175px"
-              isWhite="false"
-              text="#Bluetag"
-            ></BlueTag>
-          </BluetagsWrapper>
-        </TagBox>
-        <BannerWrapper>
-          <p>Inspiring NFT experience</p>
-          <p>Bluetags_</p>
-          <Image
-            alt="banner"
-            src="/images/banner.png"
-            layout="fill"
-            priority={true}
-          ></Image>
-        </BannerWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
           <BlueCardMediumSlider data={data?.data.bluecards} />
+        </SlideWrapper>
+      </ContextWrapper>
+      <ContextWrapper>
+        <HomeTitle subTitle="Large" title="Project" />
+        <SlideWrapper>
+          <ProjectCardSlider />
         </SlideWrapper>
       </ContextWrapper>
       {/* <ContextWrapper>

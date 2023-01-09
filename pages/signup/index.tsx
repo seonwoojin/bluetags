@@ -144,7 +144,7 @@ const Label = styled.label`
   width: 100%;
   height: 18px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #4f4f4f;
   div {
@@ -166,7 +166,8 @@ const Input = styled.input`
   padding: 1.5rem;
   border: 1px solid #4f4f4f;
   border-radius: 4px;
-  font-size: 16px;
+  font-family: "Spoqa Han Sans Neo";
+  font-size: 14px;
 `;
 
 const CheckBoxTitle = styled.div`
@@ -202,6 +203,7 @@ const CheckBoxWrapper = styled.div`
   width: 100%;
   height: 5rem;
   font-size: 13px;
+  font-weight: 400;
   white-space: pre;
   input {
     appearance: none;
@@ -286,7 +288,9 @@ const Button = styled.button`
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 16px;
+  font-family: "Spoqa Han Sans Neo";
+  font-size: 14px;
+  font-weight: 700;
   color: #ffffff;
   background-color: #0075ff;
   border-radius: 4px;
@@ -540,7 +544,8 @@ const SignUp: NextPage = () => {
                       />
                     </svg>
                   ) : (
-                      <span style={{ width:"100px", }}
+                    <span
+                      style={{ width: "100px" }}
                       onClick={() => router.push(`/signup?agreement=1`)}
                     >{`(see details)`}</span>
                   )}

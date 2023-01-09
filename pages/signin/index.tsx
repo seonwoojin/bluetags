@@ -10,6 +10,8 @@ import axios from "axios";
 import WithHead from "@components/WithHead";
 import Logo from "@components/Logo";
 import { breakingPoint } from "constants/breakingPoint";
+import { useSWRConfig } from "swr";
+import useUser from "@libs/client/useUser";
 
 const Container = styled.div`
   display: flex;
@@ -243,12 +245,32 @@ const Button = styled.button<{ login: boolean }>`
   width: 100%;
   height: 100%;
   border: ${(props) => (props.login ? "none" : "1px solid #3733ff")};
-  font-size: 16px;
-  font-weight: 600;
+  font-family: "Spoqa Han Sans Neo";
+  font-size: 14px;
+  font-weight: 700;
   color: ${(props) => (props.login ? "#ffffff" : "#3733FF")};
   background-color: ${(props) => (props.login ? "#0075ff" : "#ffffff")};
   border-radius: 4px;
   cursor: pointer;
+`;
+
+const SignUp = styled.div<{ login: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 620px;
+  height: 40px;
+  border: ${(props) => (props.login ? "none" : "1px solid #3733ff")};
+  font-family: "Spoqa Han Sans Neo";
+  font-size: 14px;
+  font-weight: 700;
+  color: ${(props) => (props.login ? "#ffffff" : "#3733FF")};
+  background-color: ${(props) => (props.login ? "#0075ff" : "#ffffff")};
+  border-radius: 4px;
+  cursor: pointer;
+  @media ${breakingPoint.device.mobile} {
+    width: 85vw;
+  }
 `;
 
 const LinkBox = styled.div`
@@ -267,7 +289,7 @@ const LinkBox = styled.div`
     display: none;
   }
   @media ${breakingPoint.device.mobile} {
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 85vw;
     .mobile {
       display: block;
@@ -334,7 +356,7 @@ const SignIn: NextPage = () => {
       if (!data?.auth) {
         router.push("/signup/auth");
       } else if (status === 200) {
-        router.push("/");
+        router.reload();
       }
     }
   }, [data, status, router]);
@@ -347,7 +369,7 @@ const SignIn: NextPage = () => {
       </InfographicContainer>
       <LoginContainer>
         <FormContainer>
-          <TitleContainer>Sign up</TitleContainer>
+          <TitleContainer>Sign in</TitleContainer>
           <LoginForm onSubmit={handleSubmit(onValid)}>
             <InputContainer>
               <InputWrapper>
@@ -419,14 +441,11 @@ const SignIn: NextPage = () => {
               <Button login={true}>Login</Button>
             </ButtonWrapper>
             <LinkBox>
-              <Link className="mobile" href={"/signup"}>
-                Sign up +
-              </Link>
               <Link href={"/signup"}>Forgot your password ?</Link>
             </LinkBox>
-            <ButtonWrapper className="web">
-              <Button login={false}>Sign up</Button>
-            </ButtonWrapper>
+            <SignUp onClick={() => router.push("/signup")} login={false}>
+              Sign up
+            </SignUp>
           </LoginForm>
         </FormContainer>
       </LoginContainer>
