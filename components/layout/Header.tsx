@@ -52,11 +52,13 @@ const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 0 2rem;
-  font-size: 1.6rem;
+  font-size: 12px;
   border: none;
   border-radius: 4px;
   background: rgba(55, 51, 255, 0.06);
   color: #3733ff;
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
   :focus {
     border: 2px solid rgba(55, 51, 255, 0.2);
   }
@@ -94,7 +96,8 @@ const UserText = styled.div`
   width: auto;
   height: 100%;
   margin-left: 17px;
-  font-size: 2rem;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   color: #1c1c1c;
   a {

@@ -1,28 +1,15 @@
-import Slider from "react-slick";
 import styled, { keyframes } from "styled-components";
-import BlueCardMedium from "../bluecard/BlueCardMedium";
-import { BluecardWithProject } from "pages";
-
-const StyledSlider = styled(Slider)`
-  .slick-slide {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 20px;
-    align-items: center;
-  }
-`;
-
-const Div = styled.div`
-  cursor: default;
-`;
 
 const BlueCardContainer = styled.div`
   @keyframes loading {
     0% {
-      background-position: 0px 0;
+      background-color: rgba(165, 165, 165, 0.1);
+    }
+    50% {
+      background-color: rgba(165, 165, 165, 0.3);
     }
     100% {
-      background-position: 300px 0;
+      background-color: rgba(165, 165, 165, 0.1);
     }
   }
   overflow: hidden;
@@ -30,22 +17,16 @@ const BlueCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  height: 500px;
+  width: 336px;
+  height: 480px;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   cursor: pointer;
   margin-bottom: 30px;
   .animationBar {
-    background: linear-gradient(
-      to right,
-      #eeeeee 10%,
-      #dddddd 28%,
-      #eeeeee 53%
-    );
     background-size: 100%;
-    animation: loading 2s infinite linear;
+    animation: loading 1.5s infinite ease-in-out;
   }
 `;
 
@@ -53,7 +34,7 @@ const BlueCardBackGround = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 336px;
   height: 180px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.2);
@@ -125,8 +106,7 @@ const PostDate = styled.div`
 const PostContext = styled.div`
   display: -webkit-box;
   width: 280px;
-  height: 100%;
-  max-height: 70px;
+  height: 100px;
   margin-left: 10px;
   margin-bottom: 10px;
   padding-top: 10px;
@@ -140,24 +120,26 @@ const PostContext = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const Button = styled.button`
+const PostBlueTags = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  height: 40px;
-  margin-top: 25px;
-  margin-left: 30px;
-  bottom: 20px;
-  border: none;
-  border-radius: 10px;
-  color: white;
+  width: 280px;
+  height: 20%;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  margin-bottom: 10px;
+`;
+
+const BlueTags = styled.div<{ width: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${(props) => props.width};
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 100px 9px 200px 100px;
   background-color: rgba(0, 0, 0, 0.2);
-  svg {
-    margin-left: 10px;
-    width: 20px;
-    fill: white;
-  }
 `;
 
 const Wrapper = styled.div`
@@ -168,63 +150,22 @@ const Wrapper = styled.div`
   z-index: -1;
 `;
 
-export default function SkeletonBlueCardMediumSlider() {
-  const settings = {
-    nextArrow: <Div></Div>,
-    prevArrow: <Div></Div>,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    responsive: [
-      {
-        breakpoint: 1980,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 1644,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 1278,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 912,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+export default function SkeletonBlueCardMedium() {
   return (
-    <div>
-      <StyledSlider {...settings}>
-        {[1, 2, 3, 4, 5].map((index) => (
-          <BlueCardContainer key={index}>
-            <BlueCardBackGround></BlueCardBackGround>
-            <BlueCardText>
-              <TitleContainer>
-                <ProjectLogo />
-                <PostTitle></PostTitle>
-              </TitleContainer>
-              <ProjectTitle></ProjectTitle>
-            </BlueCardText>
-            <PostContext></PostContext>
-            <PostDate></PostDate>
-            <Button></Button>
-            <Wrapper className="animationBar" />
-          </BlueCardContainer>
-        ))}
-      </StyledSlider>
-    </div>
+    <BlueCardContainer>
+      <BlueCardBackGround></BlueCardBackGround>
+      <BlueCardText>
+        <TitleContainer>
+          <ProjectLogo />
+          <PostTitle></PostTitle>
+        </TitleContainer>
+      </BlueCardText>
+      <PostContext></PostContext>
+      <PostBlueTags>
+        <BlueTags width="100px"></BlueTags>
+        <BlueTags width="150px"></BlueTags>
+      </PostBlueTags>
+      <Wrapper className="animationBar" />
+    </BlueCardContainer>
   );
 }

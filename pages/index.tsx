@@ -5,18 +5,17 @@ import styled from "styled-components";
 import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { BlueCard, Project } from "@prisma/client";
-import SkeletonBlueCardMediumSlider from "../components/skeleton/SkeletonBlueCardMeduimSlider";
 import WithHead from "@components/WithHead";
 import { breakingPoint } from "constants/breakingPoint";
 import Image from "next/image";
 import BlueTag from "@components/Bluetag";
+import SkeletonBlueCardMedium from "@components/skeleton/SkeletonBlueCardMedium";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-width: 1500px;
   height: 500vh;
   padding-top: 13rem;
   padding-left: 27rem;
@@ -32,7 +31,7 @@ const ContextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: auto;
   margin-bottom: 100px;
 `;
@@ -43,11 +42,12 @@ const BannerWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   max-width: 3300px;
   height: 280px;
   margin-bottom: 60px;
   padding-left: 70px;
+  font-family: "Spoqa Han Sans Neo";
   background: linear-gradient(0deg, #2f374b, #2f374b), url(.jpg), url(BG.png);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -57,14 +57,17 @@ const BannerWrapper = styled.div`
   p {
     color: white;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 300;
     z-index: 10;
   }
 `;
 
 const SlideWrapper = styled.div`
+  display: flex;
   width: 100%;
   font-size: 4rem;
+  padding-left: 2vw;
+  padding-right: 2vw;
 `;
 
 const TagBoxName = styled.div`
@@ -254,11 +257,7 @@ const Home: NextPage = () => {
         </BannerWrapper>
         <HomeTitle subTitle="Large" title="BlueCard" />
         <SlideWrapper>
-          {isValidating ? (
-            <SkeletonBlueCardMediumSlider />
-          ) : data ? (
-            <BlueCardMediumSlider data={data.data.bluecards} />
-          ) : null}
+          <BlueCardMediumSlider data={data?.data.bluecards} />
         </SlideWrapper>
       </ContextWrapper>
       {/* <ContextWrapper>

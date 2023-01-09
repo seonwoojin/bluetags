@@ -12,6 +12,7 @@ const SideBarWrapper = styled.div`
   background-color: #f9f8ff;
   position: fixed;
   z-index: 99;
+  font-family: "Spoqa Han Sans Neo";
   @media ${breakingPoint.device.mobile} {
     flex-direction: row;
     justify-content: space-evenly;

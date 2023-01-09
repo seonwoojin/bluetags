@@ -2,7 +2,7 @@ import { breakingPoint } from "constants/breakingPoint";
 import styled from "styled-components";
 
 const TitleContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -17,14 +17,14 @@ const Title = styled.div`
   height: 42px;
   font-size: 26px;
   color: #1c1b1b;
-  font-weight: lighter;
+  font-weight: 300;
 `;
 
 const SubTitle = styled.div`
   width: 100%;
   font-size: 16px;
+  font-weight: 700;
   color: rgba(28, 27, 27, 0.5);
-  font-weight: bold;
 `;
 
 interface TitleProps {

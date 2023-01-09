@@ -17,7 +17,6 @@ const BlueTags = styled.div<{ color: string; width: string; isWhite: string }>`
   box-shadow: 0px 4px 20px rgba(92, 128, 255, 0.1);
   @media ${breakingPoint.device.mobile} {
     justify-content: space-evenly;
-    margin-right: 0px;
   }
 `;
 

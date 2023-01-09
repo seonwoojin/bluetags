@@ -3,7 +3,15 @@ import styled from "styled-components";
 import BlueCardMedium from "../bluecard/BlueCardMedium";
 import { BluecardWithProject } from "pages";
 import { breakingPoint } from "constants/breakingPoint";
+import SkeletonBlueCardMedium from "@components/skeleton/SkeletonBlueCardMedium";
 
+// mobile: `screen and (max-width: 1024px)`,
+// tablet: `screen and (max-width: 1200px)`,
+// laptop: `screen and (max-width: 1280px)`,
+// desktop: `screen and (max-width: 1920px)`,
+const Wrapper = styled.div`
+  width: 100%;
+`;
 const StyledSlider = styled(Slider)`
   .slick-slide {
     display: flex;
@@ -44,15 +52,15 @@ function SamplePrevArrow(props: any) {
 }
 
 interface Data {
-  data: BluecardWithProject[];
+  data: BluecardWithProject[] | undefined;
 }
 
 export default function BlueCardMediumSlider({ data }: Data) {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 900,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -74,25 +82,25 @@ export default function BlueCardMediumSlider({ data }: Data) {
     // ),
     responsive: [
       {
-        breakpoint: 1980,
+        breakpoint: 2070,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
-        breakpoint: 1644,
+        breakpoint: 1720,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
-        breakpoint: 1278,
+        breakpoint: 1370,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -101,7 +109,7 @@ export default function BlueCardMediumSlider({ data }: Data) {
         },
       },
       {
-        breakpoint: 912,
+        breakpoint: 730,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -112,14 +120,16 @@ export default function BlueCardMediumSlider({ data }: Data) {
     ],
   };
   return (
-    <div>
-      {data ? (
-        <StyledSlider {...settings}>
-          {data.map((bluecard, index) => (
-            <BlueCardMedium key={index} data={bluecard} />
-          ))}
-        </StyledSlider>
-      ) : null}
-    </div>
+    <Wrapper>
+      <StyledSlider {...settings}>
+        {data
+          ? data.map((bluecard, index) => (
+              <BlueCardMedium key={index} data={bluecard} />
+            ))
+          : [1, 2, 3, 4, 5].map((index) => (
+              <SkeletonBlueCardMedium key={index} />
+            ))}
+      </StyledSlider>
+    </Wrapper>
   );
 }

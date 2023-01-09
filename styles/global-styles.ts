@@ -11,6 +11,7 @@ box-sizing: border-box;
 font-size: 62.5%;
 min-width: 320px;
 overflow-x: hidden;
+font-family: "Spoqa Han Sans Neo";
 @media ${breakingPoint.device.mobile} {
   max-width: 100%;
   overflow-x: hidden;
