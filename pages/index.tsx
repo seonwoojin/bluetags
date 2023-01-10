@@ -13,6 +13,8 @@ import SkeletonBlueCardMedium from "@components/skeleton/SkeletonBlueCardMedium"
 import PrjectCard from "@components/project/ProjectCard";
 import ProjectCardSlider from "@components/slider/ProejctCardSlider";
 import SkeletonProjectCard from "@components/skeleton/SkeletonProjectCard";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   display: flex;
@@ -51,7 +53,7 @@ const BannerWrapper = styled.div`
   margin-bottom: 60px;
   padding-left: 70px;
   font-family: "Spoqa Han Sans Neo";
-  background: linear-gradient(0deg, #2f374b, #2f374b), url(.jpg), url(BG.png);
+  background: linear-gradient(0deg, #2f374b, #2f374b);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   @media ${breakingPoint.device.mobile} {
@@ -133,7 +135,15 @@ interface Response {
 
 const Home: NextPage = () => {
   const user = useUser();
+  const router = useRouter();
   const { data, isValidating } = useSWR<Response>("/api/bluecards");
+  useEffect(() => {
+    const about = localStorage.getItem("about");
+    if (!about) {
+      localStorage.setItem("about", "true");
+      router.push("https://www.about.bluetags.app");
+    }
+  }, []);
   return (
     <Container>
       <TagBoxName>Bluetags Filtering</TagBoxName>
